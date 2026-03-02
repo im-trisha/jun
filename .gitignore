@@ -1,0 +1,8 @@
+target/
+
+# I use those to read the IL2CPP disassembly, I dont think you really need it?
+*.cs
+
+# I use them to check out the savefile json
+*.mdrgslot
+*.mdrg
