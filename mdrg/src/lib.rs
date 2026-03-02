@@ -18,3 +18,13 @@
 //! let save: mdrg::GameVariables = serde_json::from_str(&json).unwrap();
 //! println!("{}", save.player_name);
 //! ```
+
+pub mod common;
+pub mod email;
+pub mod events;
+pub mod item;
+pub mod managers;
+pub mod news;
+pub mod save;
+
+pub use save::GameVariables;
