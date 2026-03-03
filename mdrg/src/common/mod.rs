@@ -69,20 +69,6 @@ pub struct Color32 {
     pub a: u8,
 }
 
-/// Wrapper for `PrefabManagerDataOneToOneLazy.Serialized<TKey, TPrefab, TSerializedPart>`
-///
-/// Only the `_s` list is serialized; the runtime dictionary and prefab references
-/// are reconstructed by the game on load.
-#[cfg_attr(feature = "derive-clone", derive(Clone))]
-#[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Serialize, Deserialize)]
-#[serde(bound(deserialize = "T: serde::de::DeserializeOwned"))]
-pub struct PrefabSaves<T> {
-    /// The serialized save entries
-    #[serde(rename = "_s", default)]
-    pub saves: Vec<T>,
-}
-
 /// A key-value pair storing an integer variable
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]

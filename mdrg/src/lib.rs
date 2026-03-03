@@ -22,9 +22,9 @@ pub mod common;
 pub mod email;
 pub mod events;
 pub mod items;
-pub mod managers;
 pub mod mods;
 pub mod news;
 pub mod save;
+pub mod substates;
 
 pub use save::MDRGSaveSlot;

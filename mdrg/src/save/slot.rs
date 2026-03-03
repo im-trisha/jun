@@ -6,13 +6,13 @@ use crate::common::{Color, KeyedValues, SpecialVariablesHolder};
 use crate::email::{LegacyEmail, NewEmail};
 use crate::events::EventsState;
 use crate::items::ItemsState;
-use crate::managers::{
-    BotStatusAppState, CockTwitchState, CocktractsState, CookingMinigameState, DeliveriesState,
-    FishingMinigameState, JoinUsBlogState, StockMarketState,
-};
 use crate::news::NewsDataState;
 use crate::save::dialogue_chain::DialogueChainMemory;
 use crate::save::flag::Flag;
+use crate::substates::{
+    BotStatusAppState, CockTwitchState, CocktractsState, CookingMinigameState, DeliveriesState,
+    FishingMinigameState, JoinUsBlogState, StockMarketState,
+};
 
 // TODO: not default on some fields important lorewise/game logic?
 
