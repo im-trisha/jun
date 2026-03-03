@@ -6,3 +6,4 @@ target/
 # I use them to check out the savefile json
 *.mdrgslot
 *.mdrg
+*.mdrg.backup

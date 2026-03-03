@@ -2,7 +2,6 @@
 //! Currently, only supports 0.95, in the future may support
 //! older and newer versions
 //!
-//!
 //! Types are extracted from the IL2CPP disassembly
 //! each module groups related C# classes
 //!
@@ -15,16 +14,17 @@
 //!
 //! ```rust,no_run
 //! let json = std::fs::read_to_string("save.mdrg").unwrap();
-//! let save: mdrg::GameVariables = serde_json::from_str(&json).unwrap();
+//! let save: mdrg::MDRGSaveFile = serde_json::from_str(&json).unwrap();
 //! println!("{}", save.player_name);
 //! ```
 
 pub mod common;
 pub mod email;
 pub mod events;
-pub mod item;
+pub mod items;
 pub mod managers;
+pub mod mods;
 pub mod news;
 pub mod save;
 
-pub use save::GameVariables;
+pub use save::MDRGSaveSlot;
