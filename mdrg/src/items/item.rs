@@ -125,7 +125,7 @@ pub struct Item {
     /// Dynamic sub-item containers
     #[serde(rename = "DI", default)]
     pub di: Vec<DynamicItem>,
-    /// Active modifiers on this item (`ItemModifier` array).
+    /// Active modifiers on this item
     #[serde(rename = "IM", default)]
     pub modifiers: Vec<ItemModifier>,
 }

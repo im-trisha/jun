@@ -5,9 +5,11 @@ edition = "2024"
 
 [dependencies]
 serde.workspace = true
-serde_json.workspace = true
 semver.workspace = true
 num_enum.workspace = true
+
+# We shouldn't use this, its temporary as long as we don't know 100% of the save file
+serde_json.workspace = true
 
 [features]
 derive-clone = []
