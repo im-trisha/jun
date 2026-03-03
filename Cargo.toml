@@ -6,6 +6,7 @@ members = ["jun", "mdrg"]
 # Used by mdrg to declare the savefile format
 serde = { version = "1.0.228", features = ["derive"] }
 semver = { version = "1.0.27", features = ["serde"]}
+num_enum = "0.7.5"
 
 # Used by jun to parse the json file into a serde structure
 serde_json = "1.0.149"

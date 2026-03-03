@@ -1,3 +1,4 @@
+use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
 pub use slot::MDRGSaveSlot;
@@ -9,13 +10,17 @@ mod slot;
 /// Different possible types of saves
 #[repr(i32)]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]
+#[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
+#[serde(from = "i32", into = "i32")]
 pub enum SaveType {
     /// A manual save slot
-    #[default]
     Manual = 0,
     /// An auto save
     Auto = 1,
+    #[num_enum(catch_all)]
+    /// An unknown variant! Please let the developer know if this value ever pops up,
+    /// you can safely unwrap, failing fast is probably the best solution
+    Unknown(i32),
 }
 
 /// A MDRG save file, its the top-most structure in the entire crate
@@ -53,6 +58,6 @@ pub struct MDRGSaveRecord {
     pub slot: i32,
     #[serde(rename = "savedata")]
     pub save_data: String, // For now...
-    #[serde(rename = "_saveType", default)]
+    #[serde(rename = "_saveType")]
     pub save_type: SaveType,
 }

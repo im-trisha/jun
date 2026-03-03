@@ -1,10 +1,16 @@
 //! Event system types
 
+use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
-#[repr(i32)]
+/// The type of an event
+///
+/// The C# type is `EventEnum` (TypeDefIndex: 1337)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
+#[repr(i32)]
+#[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
+#[serde(from = "i32", into = "i32")]
+// TODO: to be fair ask everything here... I dont know what to say for pretty much half of them
 pub enum EventType {
     None = 0,
     StoryState = 1,
@@ -16,6 +22,10 @@ pub enum EventType {
     AddFlag = 11,
     NewEmail = 12,
     ItemDelivery = 13,
+    #[num_enum(catch_all)]
+    /// An unknown variant! Please let the developer know if this value ever pops up,
+    /// you can safely unwrap, failing fast is probably the best solution
+    Unknown(i32),
 }
 
 /// Raw event payload
@@ -34,7 +44,7 @@ pub struct EventHolder {
     pub event_type: EventType,
 }
 
-/// A scheduled game event with its trigger time
+/// A game event
 ///
 /// The C# type is `EventManager.NormalEvent` (TypeDefIndex: 1332)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
@@ -44,7 +54,7 @@ pub struct NormalEvent {
     /// The event payload
     #[serde(rename = "eventHolder")]
     pub event_holder: EventHolder,
-    /// In-game minute at which the event was scheduled
+    /// In-game minute at which the event started
     #[serde(rename = "startTime")]
     pub start_time: i32,
 }

@@ -48,8 +48,7 @@ pub struct MDRGSaveSlot {
     /// State for anything item-related
     #[serde(rename = "itemManager")]
     pub items: ItemsState,
-    /// Scheduled game events
-    // TODO: Scheduled? Change the docs even in the events file
+    /// Ongoing game events
     #[serde(rename = "eventManager")]
     pub events: EventsState,
     /// Streaming state

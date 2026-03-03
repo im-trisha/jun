@@ -1,5 +1,6 @@
 //! In-game news system types
 
+use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
 use crate::common::GameId;
@@ -10,7 +11,8 @@ use crate::common::GameId;
 /// understand better what this structure's purpose is
 #[repr(i32)]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
+#[serde(from = "i32", into = "i32")]
 pub enum NewsId {
     /// Invalid Id, this means that the news doesn't use this format anymore,
     /// instead it prefers the [GameId] to orchestrate the type news type
@@ -27,7 +29,9 @@ pub enum NewsId {
     SideNews3 = 3,
     /// Identifies the opinion news
     OpinionNews = 4,
-    /// This was unexpected. Please report to the developer please!
+    #[num_enum(catch_all)]
+    /// An unknown variant! Please let the developer know if this value ever pops up,
+    /// you can safely unwrap, failing fast is probably the best solution
     Unknown(i32),
 }
 
