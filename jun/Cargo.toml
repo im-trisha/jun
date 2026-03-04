@@ -2,9 +2,18 @@
 name = "jun"
 version = "0.1.0"
 edition = "2024"
+description = "A GUI save file editor for MDRG save files"
+repository = "https://codeberg.org/imtrisha/jun"
+readme = "README.md"
+license = "MIT"
+keywords = ["mdrg", "save", "my dystopian robot girlfriend"]
+categories = []
+
 
 [dependencies]
 iced.workspace = true
 iced_aw.workspace = true
+mdrg = { version = "0.1.0", path = "../mdrg" }
 
 serde_json.workspace = true
+typed-i18n.workspace = true
