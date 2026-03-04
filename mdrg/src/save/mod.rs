@@ -51,7 +51,7 @@ pub struct MDRGSaveFile {
 pub struct MDRGSaveRecord {
     pub notes: String,
     pub description: String,
-    // TODO: didn't understand the meaning of this...
+    // TODO: change according to what sheep said
     pub time: i64,
     #[serde(rename = "ingameTime")]
     pub ingame_time: i32,

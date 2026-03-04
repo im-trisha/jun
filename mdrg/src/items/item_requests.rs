@@ -25,13 +25,11 @@ pub struct ItemRepairOrder {
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
 #[serde(from = "i32", into = "i32")]
 pub enum ItemOrderStatus {
-    /// The order is in the process of being created
+    /// It's added to the custom orders shop, but not paid for
     InCreation = 0,
-    // TODO: ask
-    /// The order has been created but not done? Is this like shipping?
+    /// It's paid for and awaiting the completion. The order is "Created"
     Created = 1,
-    // TODO: ask
-    /// The order is done and ready to be taken
+    /// The order is done and ready to be taken from Annalie
     Done = 2,
     #[num_enum(catch_all)]
     /// An unknown variant! Please let the developer know if this value ever pops up,

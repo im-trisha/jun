@@ -163,8 +163,10 @@ pub struct MDRGSaveSlot {
     pub story_flags: Vec<Flag>,
 
     // Economy / reputation
-    // TODO: ASK
-    /// Some search-related score, which I think is between 0.0 and 1.0
+    /// Search score, which is between 0.0 and 1.0
+    ///
+    /// This score is related to peoples noticing Jun is a bot,
+    /// 0.0 means no one noticed yet, 1.0 means it's bad
     #[serde(default)]
     pub search: f32,
     /// Reputation points with the priest bot
@@ -199,15 +201,36 @@ pub struct MDRGSaveSlot {
     /// Current mental health level, between 0.0 and 1.0 (1.0 means its full)
     #[serde(rename = "_mentalHealth")]
     pub mental_health: f32,
-    // TODO: ASK! Modifier? I don't think so?
     /// Temporary mental health modifier
+    ///
+    /// It's used for handling mental health drugs,
+    /// those allow you to quickly increase mental health, but it decreases faster, the formula is:
+    ///
+    /// ```rust
+    /// pub fn get_mental_health() -> f32 {
+    ///     real_mental_health + temporary_mental_health
+    /// }
+    ///
+    /// pub fn set_mental_health(new_val: f32) -> f32 {
+    ///     let change = new_val - current_val;
+    ///     let target = real_mental_health + change;
+    ///     if (target <= 0.0) {
+    ///         temporary_mental_health += target; // Temporary is always between 0 and 1
+    ///         real_mental_health = 0;
+    ///     } else {
+    ///         real_mental_health = target.clamp(0.0, 1.0);
+    ///     }
+    /// }
+    /// ```
     #[serde(rename = "_mentalHealthTemporary")]
     pub mental_health_temporary: f32,
     /// Current satiation level, between 0.0 and 1.0 (1.0 means you're full)
     #[serde(rename = "_satiation")]
     pub satiation: f32,
-    // TODO: Physical health? Why? The player never fights or anything, obsolete field?
     /// Current health level, between 0.0 and 1.0 (1.0 means its full)
+    ///
+    /// This is used to handle starvation (when you are starving, it goes down and when you reach 0 you die)
+    /// It also goes down with some drugs
     #[serde(rename = "_health")]
     pub health: f32,
 
@@ -223,8 +246,11 @@ pub struct MDRGSaveSlot {
     /// Jun's lust level
     #[serde(rename = "_lust")]
     pub lust: i32,
-    // TODO: correct "miss"?
-    /// Jun longing / attachment level, between 0.0 and 1.0 (1.0 means she misses you a lot)
+    /// Jun longing / attachment level, between 0.0 and 10.0
+    ///
+    /// Citing the lead developer (ΩSheep):
+    /// >  longing is for accumulated horniness. it goes from 0 to 10.
+    /// > It gets converted to horniness when you activate a sex scene. Goes down when she cums.
     #[serde(rename = "_longing")]
     pub longing: f32,
     /// Jun's current arousal level, between 0.0 and 1.0 (1.0 means maximum intensit)
@@ -233,14 +259,12 @@ pub struct MDRGSaveSlot {
     /// Jun sympathy level
     #[serde(rename = "_sympathy")]
     pub sympathy: i32,
-    // TODO: is there a kind of enum? like between 0-10 bored...
-    /// Jun's current mood
+    /// Jun's current mood, between -1 and 1
     #[serde(rename = "_mood")]
     pub mood: f32,
     /// Jun intelligence stat, the game serializes this field as "inteligence"
     #[serde(rename = "inteligence")]
     pub intelligence: i32,
-    // TODO: those three properties, are the "CURRENTLY" inside, or basically duplicate anon's properties?
     /// Volume of sperm in Jun's vagina (mL)
     #[serde(rename = "_cumInside")]
     pub cum_inside: f32,
@@ -268,8 +292,13 @@ pub struct MDRGSaveSlot {
     /// ```
     #[serde(default)]
     pub stage: i32,
-    // TODO: above and below assumptions correct?
-    /// Number of stage-conversations remaining (e.g. [MDRGSaveSlot.unique_conversations_left] + [MDRGSaveSlot.stage] is the last stage you will reach)
+    /// Citing the lead developer (ΩSheep):
+    ///
+    ///  This is used to not allow the player to spam all the dialogues with jun at once.
+    ///
+    /// When unique_conversations_left is 0 only generic dialogues appear when talking with her.
+    ///
+    /// It goes down when a unique conversation activates
     #[serde(rename = "_uniqueConversationsLeft", default)]
     pub unique_conversations_left: i32,
 
@@ -288,8 +317,10 @@ pub struct MDRGSaveSlot {
     /// In-game minutes of the last cuddle session
     #[serde(rename = "lastCuddledAt", default)]
     pub last_cuddled_at: i32,
-    // TODO: this being bool makes me really unconfortable
-    /// Whether the player last slept together with the bot
+    /// Whether the player has ever slept together with the bot
+    ///
+    /// Achtung: Slept not in the sense of "Sexual intercourse", but in the sense of literally sleeping,
+    /// Sleeping with the bot can be unlocked further in the story
     #[serde(rename = "lastSleptWithBot", default)]
     pub last_slept_with_bot: bool,
     /// In-game minutes when the player last woke up
@@ -304,7 +335,6 @@ pub struct MDRGSaveSlot {
     /// In-game minutes of the last equipment screen visit
     #[serde(rename = "lastEquipmentAt", default)]
     pub last_equipment_at: i32,
-    // TODO: maybe date? No stat for date maybe
     /// In-game minutes of the last time hanging out with Jun
     #[serde(rename = "lastOutsideWithBotAt", default)]
     pub last_outside_with_bot_at: i32,

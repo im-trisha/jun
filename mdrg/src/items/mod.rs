@@ -7,9 +7,11 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
 mod item;
+mod item_condition;
 mod item_requests;
 
 pub use item::Item;
+pub use item_condition::ItemCondition;
 pub use item_requests::{ItemOrder, ItemOrderStatus, ItemRepairOrder};
 
 use crate::{common::KeyedValues, mods::ModInfo};
@@ -53,8 +55,7 @@ pub struct EquipmentSet {
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize, Default)]
 pub struct ShopState {
-    // TODO: right?
-    /// Dynamic shops that can be added by mods
+    /// Dynamic shops, an obsolete property
     #[serde(rename = "_dynamicShops", default)]
     pub dynamic_shops: KeyedValues<String, Shop>,
     /// All shops present in the game, this includes the grocery store, ladyparts.ic, Annalie...
@@ -95,8 +96,11 @@ pub struct ItemsState {
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
 #[serde(from = "i32", into = "i32")]
 pub enum ShopItemType {
-    // TODO: ask meaning of those variants
+    /// Items like modules in ladyparts.ic,
+    /// they appear randomly and disappear from the shop when you buy them
     SingleBuy = 0,
+    /// Items like food in the grocery shop,
+    /// they just exist no matter how many you buy
     Generic = 1,
     #[num_enum(catch_all)]
     /// An unknown variant! Please let the developer know if this value ever pops up,

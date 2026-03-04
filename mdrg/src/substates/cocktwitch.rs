@@ -53,7 +53,6 @@ pub struct Streamer {
     /// Streamer category
     #[serde(rename = "<Type>k__BackingField")]
     pub streamer_type: StreamerType,
-    // TODO: I guess?
     /// Seed for deterministic content generation
     pub seed: i32,
 }

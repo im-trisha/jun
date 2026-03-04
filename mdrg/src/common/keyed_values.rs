@@ -23,7 +23,6 @@ where
 {
     pub map: HashMap<K, V>,
 }
-// TODO: omfg... Is it keys/values ugly to prevent overriding another guy's keys?
 
 impl<K, V> Default for KeyedValues<K, V>
 where

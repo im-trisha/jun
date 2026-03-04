@@ -4,7 +4,10 @@ use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-use crate::common::{Color, GameId, KvFloat, KvInt, KvString, SerializableGuid};
+use crate::{
+    common::{Color, GameId, KvFloat, KvInt, KvString, SerializableGuid},
+    items::ItemCondition,
+};
 
 /// An active modifier applied to an item
 ///
@@ -53,8 +56,7 @@ pub struct DynamicItem {
 pub enum ItemLocation {
     /// The item is stored in Anon's apartment
     AtHome = 0,
-    /// The item is in Anon's inventory
-    // TODO: items can be carried?
+    /// The item is being carried
     Carried = 1,
     /// The item is borrowed from Annalie's shop
     BorrowedFromShop = 2,
@@ -83,12 +85,13 @@ pub struct Item {
     pub strings: Vec<KvString>,
 
     // Item-specific fields
-    // TODO: When 0? For example food when finished stays in inv with 0 count?
-    /// Stack count, in some cases can be 0
+    /// Stack count
     #[serde(rename = "_count")]
-    pub count: i32,
-    /// Quality rating (0.4 – 1.0).
-    // TODO: Mappings from game qualities to floats?
+    count: i32,
+    /// Quality rating
+    ///
+    /// You can have a simpler understanding of the meaning of it
+    /// by using [Item.item_condition]
     #[serde(rename = "_quality")]
     pub quality: f32,
     /// Whether the player has marked this item as a favourite.
@@ -101,22 +104,25 @@ pub struct Item {
     #[serde(rename = "_gameId")]
     pub game_id: GameId,
     /// Obsolete additional data blob
-    // TODO: Really obsolete? I'm not entirely sure
     #[serde(rename = "_additionalData", default)]
     pub additional_data: String,
+    //TODO: AdditionalDataSlots is there and obsolete too, put it?
     /// Unique instance GUID for this specific item
     // TODO: Instance or additional identifier? maybe clearer to write clearer doc comments
     #[serde(rename = "UniqueItemGuid")]
     pub unique_item_guid: SerializableGuid,
-    /// GUIDs of items that were combined to produce this item
-    // TODO: ehm? A game mechanic i dont know or? I deduced it but (?)
+    /// GUIDs of items "related to each other", citing the lead developer (ΩSheep):
+    /// > Item.SourceItemsUniqueGuids is also related to handling the changing room.
+    /// > Specifically handling packages in borrowed items.
+    /// > Like a package of socks.
+    /// > So that when you return one sock it automatically returns both the socks.
     #[serde(rename = "SourceItemsUniqueGuids", default)]
     pub source_items_unique_guids: Vec<SerializableGuid>,
     /// Equipment slot this item is currently equipped in (empty if none)
     // TODO: Present in the dump, make enum
     #[serde(rename = "_equipedSlot", default)]
     pub equiped_slot: String,
-    /// Location of the item
+    /// Location of the item, only used at runtime
     #[serde(rename = "itemLocation")]
     pub item_location: ItemLocation,
     /// Dye / tint colors applied to the item
@@ -128,4 +134,60 @@ pub struct Item {
     /// Active modifiers on this item
     #[serde(rename = "IM", default)]
     pub modifiers: Vec<ItemModifier>,
+}
+
+impl Item {
+    pub fn item_condition(&self) -> ItemCondition {
+        ItemCondition::from(self.quality)
+    }
+
+    /// Get the item count
+    ///
+    ///
+    /// # Notes
+    /// The reason why this is behind a getter/setter, is because
+    /// the actual underlying value is really misleading, for backwards compatibility:
+    /// ```
+    /// -1 = 0
+    /// 0 = 1
+    /// 1 = 2
+    /// ```
+    /// In game, if the 0-indexed value gets to -1, it will be removed from the inventory
+    ///
+    /// As of preventing breaking the save file and prevent confusion, this is behind a getter/setter
+    ///
+    /// You should treat this value as a normal value though,
+    /// because this function does the job for you and is a transpilation of the C# code
+    pub fn get_count(&self) -> i32 {
+        self.count + 1
+    }
+
+    /// Sets the item count
+    ///
+    /// # Notes
+    /// The reason why this is behind a getter/setter, is because
+    /// the actual underlying value is really misleading, for backwards compatibility:
+    /// ```
+    /// -1 = 0
+    /// 0 = 1
+    /// 1 = 2
+    /// ```
+    /// In game, if the 0-indexed value gets to -1, it will be removed from the inventory
+    ///
+    /// As of preventing breaking the save file and prevent confusion, this is behind a getter/setter
+    ///
+    /// You should treat this value as a normal value though,
+    /// because this function does the job for you and is a transpilation of the C# code
+    pub fn set_count(&mut self, count: i32) {
+        let count = count - 1;
+
+        if count < 0 {
+            self.count = -1;
+            // TODO: Is stackable here, add it RE
+        } else if false {
+            self.count = count;
+        } else {
+            self.count = 1
+        }
+    }
 }

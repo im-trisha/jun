@@ -28,7 +28,7 @@ pub enum EventType {
     Unknown(i32),
 }
 
-/// Raw event payload
+/// Raw event payload, this struct is obsolete and left for backwards compatibility
 ///
 /// The C# type is `EventHolder` (TypeDefIndex: 1336)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
@@ -36,7 +36,6 @@ pub enum EventType {
 #[derive(Serialize, Deserialize)]
 pub struct EventHolder {
     /// Event data
-    // TODO: more info?
     #[serde(default)]
     pub data: String,
     /// The event type
@@ -47,11 +46,12 @@ pub struct EventHolder {
 /// A game event
 ///
 /// The C# type is `EventManager.NormalEvent` (TypeDefIndex: 1332)
+// TODO: this obsolete too?
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct NormalEvent {
-    /// The event payload
+    /// The event payload, this property is obsolete!
     #[serde(rename = "eventHolder")]
     pub event_holder: EventHolder,
     /// In-game minute at which the event started
