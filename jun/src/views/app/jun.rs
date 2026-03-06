@@ -1,0 +1,17 @@
+use crate::JunApp;
+
+impl eframe::App for JunApp {
+    /// Called by the framework to save state before shutdown.
+    fn save(&mut self, storage: &mut dyn eframe::Storage) {
+        eframe::set_value(storage, eframe::APP_KEY, self);
+    }
+
+    /// Called each time the UI needs repainting, which may be many times per second.
+    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
+        // Put your widgets into a `SidePanel`, `TopBottomPanel`, `CentralPanel`, `Window` or `Area`.
+        // For inspiration and more examples, go to https://emilk.github.io/egui
+        self.side_panel(ctx, frame);
+        self.top_panel(ctx, frame);
+        self.content(ctx, frame);
+    }
+}

@@ -1,6 +1,7 @@
 [package]
 name = "jun"
 version = "0.1.0"
+authors = ["imtrisha <imtrisha@noreply.codeberg.org>"]
 edition = "2024"
 description = "A GUI save file editor for MDRG save files"
 repository = "https://codeberg.org/imtrisha/jun"
@@ -10,10 +11,23 @@ keywords = ["mdrg", "save", "my dystopian robot girlfriend"]
 categories = []
 
 
-[dependencies]
-iced.workspace = true
-iced_aw.workspace = true
-mdrg = { version = "0.1.0", path = "../mdrg" }
+[package.metadata.docs.rs]
+all-features = true
+targets = ["x86_64-unknown-linux-gnu", "wasm32-unknown-unknown"]
 
-serde_json.workspace = true
+[dependencies]
+egui.workspace = true
+eframe.workspace = true
+
+serde.workspace = true
 typed-i18n.workspace = true
+sys-locale.workspace = true
+
+# native:
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+env_logger = "0.11.8"
+
+# web:
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = "0.4.50"
+web-sys = "0.3.70"              # to access the DOM (to hide the loading text)
