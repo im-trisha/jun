@@ -52,6 +52,7 @@ pub struct MDRGSaveRecord {
     pub notes: String,
     pub description: String,
     // TODO: change according to what sheep said
+    #[serde(rename = "_time", default)]
     pub time: i64,
     #[serde(rename = "ingameTime")]
     pub ingame_time: i32,

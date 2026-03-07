@@ -1,7 +1,40 @@
-app_title:
-  en: Jun
-  it: Jun
+app:
+  title:
+    en: Jun
+    it: Jun
 
-topbar_file:
-  en: File
-  it: File
+ok:
+  en: "Ok"
+  it: "Ok"
+
+error:
+  label:
+    en: "Error!"
+    it: "Errore!"
+
+  reading_file:
+    en: "Error reading file"
+    it: "Errore nella lettura del file"
+  parsing_file:
+    en: "Error parsing file. Is the file content correct?"
+    it: "Errore nell'interpretazione del file. Il contenuto del file è corretto?"
+
+topbar:
+  file:
+    en: File
+    it: File
+  file_quit:
+    en: Quit
+    it: Esci
+  file_open:
+    en: Open
+    it: Apri
+  file_open_recent:
+    en: Open recent saves
+    it: Apri salvataggi recenti
+
+fd:
+  mdrg:
+    filetype:
+      en: "My Dystopian Robot Girlfriend save file"
+      it: "Salvataggio My Dystopian Robot Girlfriend"

@@ -27,4 +27,5 @@ pub mod news;
 pub mod save;
 pub mod substates;
 
+pub use save::MDRGSaveFile;
 pub use save::MDRGSaveSlot;

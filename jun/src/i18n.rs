@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use typed_i18n::TypedI18N;
 
 #[derive(Copy, Clone, Serialize, Deserialize, TypedI18N)]
-#[typed_i18n(filename = "assets/i18n.yaml")]
+#[typed_i18n(filename = "assets/i18n.yaml", separator = "_")]
 #[typed_i18n(builder = "mixed_str", prefix = "t_")]
 #[serde(rename_all = "snake_case")]
 pub enum Language {

@@ -1,12 +1,21 @@
 use std::ops::Deref;
 
+use mdrg::MDRGSaveFile;
+
 use crate::Language;
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(serde::Deserialize, serde::Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
 pub struct JunApp {
-    language: Language,
+    #[serde(skip)]
+    pub language: Language,
+    pub worked_with: Vec<String>,
+    /// Already internationalized error string
+    #[serde(skip)]
+    pub errors: Vec<String>,
+    #[serde(skip)]
+    pub working_file: Option<MDRGSaveFile>,
 }
 
 impl Deref for JunApp {
@@ -27,7 +36,12 @@ impl Default for JunApp {
             .next()
             .unwrap_or(Language::En);
 
-        Self { language }
+        Self {
+            language,
+            worked_with: Vec::new(),
+            errors: Vec::new(),
+            working_file: None,
+        }
     }
 }
 
@@ -41,5 +55,9 @@ impl JunApp {
         } else {
             Default::default()
         }
+    }
+
+    pub fn mdrg_file_dialog(&self) -> rfd::FileDialog {
+        rfd::FileDialog::new().add_filter(self.t_fd_mdrg_filetype(), &["mdrg"])
     }
 }
