@@ -1,3 +1,5 @@
+use egui_extras::install_image_loaders;
+
 use crate::JunApp;
 
 impl eframe::App for JunApp {
@@ -10,11 +12,15 @@ impl eframe::App for JunApp {
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         // Put your widgets into a `SidePanel`, `TopBottomPanel`, `CentralPanel`, `Window` or `Area`.
         // For inspiration and more examples, go to https://emilk.github.io/egui
+
+        install_image_loaders(ctx);
+
         let error_label = self.t_error_label();
         let ok_label = self.t_ok();
-        self.errors.retain(|error| {
+        self.state.errors.retain(|error| {
             let mut keep = true;
             let win_id = format!("{:p}", error as *const _);
+
             egui::Window::new(error_label)
                 .id(win_id.into())
                 .collapsible(false)

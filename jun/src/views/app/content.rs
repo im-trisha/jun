@@ -1,40 +1,34 @@
 use crate::JunApp;
 
 impl JunApp {
-    pub(super) fn content(&self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn background(&self, ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            // The central panel the region left after adding TopPanel's and SidePanel's
-            ui.heading("eframe template");
+            ui.with_layout(egui::Layout::left_to_right(egui::Align::BOTTOM), |ui| {
+                ui.add(
+                    egui::Image::new(egui::include_image!(
+                        "../../../assets/characters/Annalie.png"
+                    ))
+                    .max_height(500.0),
+                );
 
-            ui.horizontal(|ui| {
-                ui.label("Write something: ");
-                // ui.text_edit_singleline(&mut self.label);
-            });
-
-            if ui.button("Increment").clicked() {
-                // self.value += 1.0;
-            }
-
-            ui.separator();
-
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::LEFT), |ui| {
-                powered_by_egui_and_eframe(ui);
-                egui::warn_if_debug_build(ui);
+                ui.with_layout(egui::Layout::right_to_left(egui::Align::BOTTOM), |ui| {
+                    ui.add(
+                        egui::Image::new(egui::include_image!(
+                            "../../../assets/characters/Shanice.png"
+                        ))
+                        .max_height(500.0),
+                    );
+                });
             });
         });
     }
-}
 
-fn powered_by_egui_and_eframe(ui: &mut egui::Ui) {
-    ui.horizontal(|ui| {
-        ui.spacing_mut().item_spacing.x = 0.0;
-        ui.label("Powered by ");
-        ui.hyperlink_to("egui", "https://github.com/emilk/egui");
-        ui.label(" and ");
-        ui.hyperlink_to(
-            "eframe",
-            "https://github.com/emilk/egui/tree/master/crates/eframe",
-        );
-        ui.label(".");
-    });
+    pub(super) fn content(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        self.background(ctx);
+
+        let content_frame = egui::containers::Frame::default();
+        egui::CentralPanel::default()
+            .frame(content_frame)
+            .show(ctx, |ui| self.current_screen.show(ui, &mut self.state));
+    }
 }

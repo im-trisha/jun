@@ -33,8 +33,13 @@ eframe = { version = "0.33.0", default-features = false, features = [
     "x11",           # To support older Linux distributions (restores one of the default features)
 ] }
 
+# Images loading
+egui_extras = { version = "0.33.3", features = ["all_loaders"] }
+image = { version = "0.25", features = ["jpeg", "png", "ico"] }
+
 # Used for the file dialog
 rfd = "0.17.2"
+
 
 
 # -- TUI --

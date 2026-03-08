@@ -18,18 +18,20 @@ impl JunApp {
                     if ui.button(self.t_topbar_file_open()).clicked()
                         && let Some(path) = self.mdrg_file_dialog().pick_file()
                     {
-                        let content =
-                            try_i18n!(self, fs::read_to_string(&path), self.t_error_reading_file());
+                        let content = try_i18n!(
+                            self.state,
+                            fs::read_to_string(&path),
+                            self.t_error_reading_file()
+                        );
+
                         let picked: mdrg::MDRGSaveFile = try_i18n!(
-                            self,
+                            self.state,
                             serde_json::from_str(&content),
                             self.t_error_parsing_file()
                         );
 
-                        self.working_file = Some(picked);
-                        if let Some(path_str) = path.to_str() {
-                            self.worked_with.push(path_str.into())
-                        }
+                        self.state.working_file = Some(picked);
+                        self.state.worked_with.push(path)
                     }
 
                     if ui.button(self.t_topbar_file_open_recent()).clicked() {}

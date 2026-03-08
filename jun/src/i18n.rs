@@ -12,11 +12,11 @@ pub enum Language {
 }
 
 impl Language {
-    pub fn from_locale(locale: &str) -> Self {
+    pub fn from_locale(locale: &str) -> Option<Self> {
         match locale.split('-').next().unwrap_or("") {
-            "it" => Language::It,
-            "en" => Language::En,
-            _ => Language::En,
+            "it" => Some(Language::It),
+            "en" => Some(Language::En),
+            _ => None,
         }
     }
 }

@@ -3,6 +3,18 @@ app:
     en: Jun
     it: Jun
 
+screens:
+  empty:
+    en: Jun
+    it: Jun
+  save_slot_picker:
+    title:
+      en: Save slots
+      it: Dati di salvataggio
+    autosave:
+      en: Autosave
+      it: Auto salvataggio
+
 ok:
   en: "Ok"
   it: "Ok"
@@ -36,5 +48,5 @@ topbar:
 fd:
   mdrg:
     filetype:
-      en: "My Dystopian Robot Girlfriend save file"
-      it: "Salvataggio My Dystopian Robot Girlfriend"
+      en: My Dystopian Robot Girlfriend save file
+      it: Salvataggio My Dystopian Robot Girlfriend

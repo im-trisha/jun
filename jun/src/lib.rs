@@ -5,7 +5,7 @@ mod app;
 mod i18n;
 mod views;
 
-pub use app::JunApp;
+pub use app::{JunApp, JunAppState};
 pub use i18n::Language;
 
 #[macro_export]
