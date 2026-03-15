@@ -26,6 +26,7 @@ mdrg.workspace = true
 serde_json.workspace = true
 rfd.workspace = true
 egui_extras.workspace = true
+egui_material_icons.workspace = true
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]

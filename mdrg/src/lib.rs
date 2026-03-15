@@ -28,4 +28,5 @@ pub mod save;
 pub mod substates;
 
 pub use save::MDRGSaveFile;
+pub use save::MDRGSaveRecord;
 pub use save::MDRGSaveSlot;

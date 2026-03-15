@@ -3,10 +3,12 @@
 
 mod app;
 mod i18n;
+mod state;
 mod views;
 
-pub use app::{JunApp, JunAppState};
+pub use app::JunApp;
 pub use i18n::Language;
+pub use state::JunAppState;
 
 #[macro_export]
 macro_rules! try_i18n {

@@ -4,6 +4,14 @@ app:
     it: Jun
 
 screens:
+  file_not_set:
+    en: Save file/slot hasn't been set
+    it: Il file di salvataggio/slot non è stato impostato
+
+  invalid_slot:
+    en: Invalid slot, retry or ask developers!
+    it: Slot invalido, riprova o chiedi ai sviluppatori!
+
   empty:
     en: Jun
     it: Jun
@@ -14,6 +22,18 @@ screens:
     autosave:
       en: Autosave
       it: Auto salvataggio
+    no_note:
+      en: Click to add notes
+      it: Clicca per aggiungere delle note
+    created_at:
+      en: "Created: %{date}"
+      it: "Creato: %{date}"
+    select:
+      en: Load
+      it: Carica
+    slot:
+      en: "Slot %{n}: %{s}"
+      it: "Salvataggio %{n}: %{s}"
 
 ok:
   en: "Ok"

@@ -1007,6 +1007,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "egui_material_icons"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ff7d3715b5ee29fe75afd19420756b3e0a970149b62712af1b3204a68e2012b"
+dependencies = [
+ "egui",
+]
+
+[[package]]
 name = "ehttp"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1800,6 +1809,7 @@ dependencies = [
  "eframe",
  "egui",
  "egui_extras",
+ "egui_material_icons",
  "env_logger",
  "mdrg",
  "rfd",
