@@ -58,7 +58,32 @@ pub struct MDRGSaveRecord {
     pub ingame_time: i32,
     pub slot: i32,
     #[serde(rename = "savedata")]
-    pub save_data: String, // For now...
+    save_data: String,
     #[serde(rename = "_saveType")]
     pub save_type: SaveType,
+
+    #[serde(skip)]
+    parsed_data: Option<MDRGSaveSlot>,
+}
+
+impl MDRGSaveRecord {
+    pub fn save_data(&mut self) -> Result<&mut MDRGSaveSlot, serde_json::Error> {
+        if self.parsed_data.is_none() {
+            self.parsed_data = Some(serde_json::from_str(&self.save_data)?);
+        }
+
+        // SAFETY: The unwrap will never panic because we assign parsed_data just before the unwrap
+        Ok(self.parsed_data.as_mut().unwrap())
+    }
+
+    pub fn flush_data(&mut self) -> Result<(), serde_json::Error> {
+        // If its none, it was never assigned to, meaning it didn't even get edited
+        let Some(data) = self.parsed_data.as_ref() else {
+            return Ok(());
+        };
+
+        self.save_data = serde_json::to_string(data)?;
+
+        Ok(())
+    }
 }

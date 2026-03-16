@@ -54,10 +54,14 @@ impl JunApp {
         );
 
         self.state.working_file = Some(picked);
-        self.insert_worked_with_or_move_first(path);
+        self.add_recent_path(path);
     }
 
     pub fn export_save(&mut self, path: PathBuf) {
+        if let Some(data) = self.state.working_save_slot() {
+            try_i18n!(self.state, data.flush_data(), self.t_error_to_json());
+        }
+
         let Some(save) = self.state.working_file.as_ref() else {
             return;
         };
@@ -74,10 +78,10 @@ impl JunApp {
             self.t_error_writing_file()
         );
 
-        self.insert_worked_with_or_move_first(path);
+        self.add_recent_path(path);
     }
 
-    pub fn insert_worked_with_or_move_first(&mut self, path: PathBuf) {
+    pub fn add_recent_path(&mut self, path: PathBuf) {
         if let Some(pos) = self.state.worked_with.iter().position(|x| *x == path) {
             self.state.worked_with.remove(pos);
         }

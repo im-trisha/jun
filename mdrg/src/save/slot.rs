@@ -238,7 +238,7 @@ pub struct MDRGSaveSlot {
     /// In-game minutes when the Vinegara effect expires
     #[serde(rename = "vinegaraEffectEnd", default)]
     pub vinegara_effect_end: i32,
-    /// In-game minute when the deathgrip debuff expires
+    /// In-game minute when the deathgrip effect expires
     #[serde(rename = "deathGripEffectEnd", default)]
     pub death_grip_effect_end: i32,
 
@@ -253,16 +253,18 @@ pub struct MDRGSaveSlot {
     /// > It gets converted to horniness when you activate a sex scene. Goes down when she cums.
     #[serde(rename = "_longing")]
     pub longing: f32,
-    /// Jun's current arousal level, between 0.0 and 1.0 (1.0 means maximum intensit)
+    /// Jun's current arousal level, between 0.0 and 1.0 (1.0 means maximum intensity)
     #[serde(rename = "_currentHorniness")]
     pub current_horniness: f32,
     /// Jun sympathy level
+    // TODO: Range, edit gui too
     #[serde(rename = "_sympathy")]
     pub sympathy: i32,
     /// Jun's current mood, between -1 and 1
     #[serde(rename = "_mood")]
     pub mood: f32,
     /// Jun intelligence stat, the game serializes this field as "inteligence"
+    // TODO: Range, edit gui too
     #[serde(rename = "inteligence")]
     pub intelligence: i32,
     /// Volume of sperm in Jun's vagina (mL)

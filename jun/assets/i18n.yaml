@@ -4,17 +4,10 @@ app:
     it: Jun
 
 screens:
-  file_not_set:
-    en: Save file/slot hasn't been set
-    it: Il file di salvataggio/slot non è stato impostato
-
-  invalid_slot:
-    en: Invalid slot, retry or ask developers!
-    it: Slot invalido, riprova o chiedi ai sviluppatori!
-
   empty:
     en: Jun
     it: Jun
+
   save_slot_picker:
     title:
       en: Save slots
@@ -35,6 +28,23 @@ screens:
       en: "Slot %{n}: %{s}"
       it: "Salvataggio %{n}: %{s}"
 
+  jun_stats:
+    title:
+      en: "Jun stats"
+      it: "Statistiche di Jun"
+  player_stats:
+    title:
+      en: "Player stats"
+      it: "Statistiche del giocatore"
+  game_progression:
+    title:
+      en: "Game progression"
+      it: "Progressi di gioco"
+
+  collapsable_header:
+    en: "Sections"
+    it: "Sezioni"
+
 ok:
   en: "Ok"
   it: "Ok"
@@ -43,6 +53,14 @@ error:
   label:
     en: "Error!"
     it: "Errore!"
+
+  file_not_set:
+    en: Save file/slot hasn't been set
+    it: Il file di salvataggio/slot non è stato impostato
+
+  invalid_slot:
+    en: Invalid slot, retry or ask developers!
+    it: Slot invalido, riprova o chiedi ai sviluppatori!
 
   reading_file:
     en: "Error reading file"

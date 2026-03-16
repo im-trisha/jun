@@ -74,10 +74,16 @@ impl JunAppState {
         is_autosave: bool,
     ) -> Result<(), String> {
         let lang = self.language;
+
+        // Before reassigning, we flush the old save
+        if let Some(old) = self.working_save_slot() {
+            old.flush_data().map_err(|_| lang.t_error_to_json())?;
+        }
+
         let save = self
             .working_file
             .as_mut()
-            .ok_or(lang.t_screens_file_not_set())?;
+            .ok_or(lang.t_error_file_not_set())?;
 
         let coll = match is_autosave {
             true => &mut save.auto_saves,
@@ -87,7 +93,7 @@ impl JunAppState {
         let idx = coll
             .iter()
             .position(|e| e.slot == slot_number)
-            .ok_or(lang.t_screens_invalid_slot())?;
+            .ok_or(lang.t_error_invalid_slot())?;
 
         self.working_save_slot = Some(WorkingSaveSlot {
             slot_idx: idx,

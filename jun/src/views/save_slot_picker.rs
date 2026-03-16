@@ -121,16 +121,18 @@ impl SaveSlotPicker {
 
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     ui.horizontal(|ui| {
-                        if ui.button(egui_material_icons::icons::ICON_DELETE).clicked() {
-                            action_taken = Some(SlotAction::Delete);
+                        let button = ui.add(
+                            Button::new(lang.t_screens_save_slot_picker_select())
+                                .fill(Color32::from_rgb(60, 60, 90)),
+                        );
+
+                        if Self::with_triangle(ui, button).clicked() {
+                            action_taken = Some(SlotAction::Select)
                         }
 
-                        let button = Button::new(lang.t_screens_save_slot_picker_select())
-                            .fill(Color32::from_rgb(60, 60, 90))
-                            .stroke(Stroke::new(1.0, Color32::LIGHT_BLUE));
-
-                        if ui.add(button).clicked() {
-                            action_taken = Some(SlotAction::Select)
+                        let button = ui.button(egui_material_icons::icons::ICON_DELETE);
+                        if Self::with_triangle(ui, button).clicked() {
+                            action_taken = Some(SlotAction::Delete);
                         }
                     });
                 });

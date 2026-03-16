@@ -96,8 +96,10 @@ pub struct KvFloat {
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct KvString {
+    #[serde(rename = "K")]
     /// Variable name
     pub key: String,
+    #[serde(rename = "V")]
     /// String value
     pub value: String,
 }

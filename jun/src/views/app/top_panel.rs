@@ -34,7 +34,7 @@ impl JunApp {
 
                         if let Some(path) = selected_path {
                             self.load_save(path.clone());
-                            self.insert_worked_with_or_move_first(path);
+                            self.add_recent_path(path);
                         }
                     });
                 });
