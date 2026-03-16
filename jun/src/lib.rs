@@ -15,7 +15,8 @@ macro_rules! try_i18n {
     ($app:expr, $expr:expr, $msg:expr) => {
         match $expr {
             Ok(v) => v,
-            Err(_e) => {
+            Err(e) => {
+                log::error!("{}", e.to_string());
                 $app.errors.push($msg.into());
                 return;
             }

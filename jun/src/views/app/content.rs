@@ -1,3 +1,5 @@
+use egui::{Key, Modifiers};
+
 use crate::JunApp;
 
 impl JunApp {
@@ -29,6 +31,20 @@ impl JunApp {
         let content_frame = egui::containers::Frame::default();
         egui::CentralPanel::default()
             .frame(content_frame)
-            .show(ctx, |ui| self.current_screen.show(ui, &mut self.state));
+            .show(ctx, |ui| {
+                if ui.input_mut(|i| i.consume_key(Modifiers::CTRL | Modifiers::SHIFT, Key::S))
+                    && let Some(path) = self.mdrg_file_dialog().save_file()
+                {
+                    self.export_save(path);
+                }
+
+                if ui.input_mut(|i| i.consume_key(Modifiers::CTRL, Key::S))
+                    && let Some(path) = self.state.worked_with.last()
+                {
+                    self.export_save(path.clone());
+                }
+
+                self.current_screen.show(ui, &mut self.state)
+            });
     }
 }

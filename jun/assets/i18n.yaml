@@ -47,9 +47,18 @@ error:
   reading_file:
     en: "Error reading file"
     it: "Errore nella lettura del file"
+
   parsing_file:
     en: "Error parsing file. Is the file content correct?"
     it: "Errore nell'interpretazione del file. Il contenuto del file è corretto?"
+
+  writing_file:
+    en: "Error writing file. Do you have enough permissions?"
+    it: "Errore nella scrittura del file. Hai abbastanza permessi?"
+
+  to_json:
+    en: "Error converting to MDRG format. Unexpected!"
+    it: "Errore nella conversione nel formato MDRG. Inaspettato!"
 
 topbar:
   file:

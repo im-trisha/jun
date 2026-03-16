@@ -1,5 +1,4 @@
-use crate::try_i18n;
-use std::fs::{self};
+use std::path::PathBuf;
 
 use crate::JunApp;
 
@@ -18,24 +17,28 @@ impl JunApp {
                     if ui.button(self.t_topbar_file_open()).clicked()
                         && let Some(path) = self.mdrg_file_dialog().pick_file()
                     {
-                        let content = try_i18n!(
-                            self.state,
-                            fs::read_to_string(&path),
-                            self.t_error_reading_file()
-                        );
-
-                        let picked: mdrg::MDRGSaveFile = try_i18n!(
-                            self.state,
-                            serde_json::from_str(&content),
-                            self.t_error_parsing_file()
-                        );
-
-                        self.state.working_file = Some(picked);
-                        self.state.worked_with.push(path)
+                        self.load_save(path);
                     }
 
-                    if ui.button(self.t_topbar_file_open_recent()).clicked() {}
+                    if self.state.worked_with.is_empty() {
+                        return;
+                    }
+
+                    ui.menu_button(self.t_topbar_file_open_recent(), |ui| {
+                        let mut selected_path: Option<PathBuf> = None;
+                        for path in &self.state.worked_with {
+                            if ui.button(path.to_string_lossy()).clicked() {
+                                selected_path = Some(path.clone());
+                            }
+                        }
+
+                        if let Some(path) = selected_path {
+                            self.load_save(path.clone());
+                            self.insert_worked_with_or_move_first(path);
+                        }
+                    });
                 });
+
                 ui.add_space(16.0);
 
                 egui::widgets::global_theme_preference_switch(ui);

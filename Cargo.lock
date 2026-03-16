@@ -1811,6 +1811,7 @@ dependencies = [
  "egui_extras",
  "egui_material_icons",
  "env_logger",
+ "log",
  "mdrg",
  "rfd",
  "serde",

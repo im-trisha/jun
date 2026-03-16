@@ -1,8 +1,7 @@
-use std::ops::Deref;
-
 use serde::{Deserialize, Serialize};
+use std::{fs, ops::Deref, path::PathBuf};
 
-use crate::{JunAppState, Language, views::Screens};
+use crate::{JunAppState, Language, try_i18n, views::Screens};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(Default, Deserialize, Serialize)]
@@ -39,5 +38,53 @@ impl JunApp {
 
     pub fn mdrg_file_dialog(&self) -> rfd::FileDialog {
         rfd::FileDialog::new().add_filter(self.t_fd_mdrg_filetype(), &["mdrg"])
+    }
+
+    pub fn load_save(&mut self, path: PathBuf) {
+        let content = try_i18n!(
+            self.state,
+            fs::read_to_string(&path),
+            self.t_error_reading_file()
+        );
+
+        let picked: mdrg::MDRGSaveFile = try_i18n!(
+            self.state,
+            serde_json::from_str(&content),
+            self.t_error_parsing_file()
+        );
+
+        self.state.working_file = Some(picked);
+        self.insert_worked_with_or_move_first(path);
+    }
+
+    pub fn export_save(&mut self, path: PathBuf) {
+        let Some(save) = self.state.working_file.as_ref() else {
+            return;
+        };
+
+        let content = try_i18n!(
+            self.state,
+            serde_json::to_string_pretty(save),
+            self.t_error_to_json()
+        );
+
+        try_i18n!(
+            self.state,
+            fs::write(&path, content),
+            self.t_error_writing_file()
+        );
+
+        self.insert_worked_with_or_move_first(path);
+    }
+
+    pub fn insert_worked_with_or_move_first(&mut self, path: PathBuf) {
+        if let Some(pos) = self.state.worked_with.iter().position(|x| *x == path) {
+            self.state.worked_with.remove(pos);
+        }
+        self.state.worked_with.insert(0, path);
+
+        while self.state.worked_with.len() > 8 {
+            self.state.worked_with.pop();
+        }
     }
 }
