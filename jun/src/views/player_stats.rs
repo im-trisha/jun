@@ -8,6 +8,7 @@ pub struct PlayerStats {}
 impl PlayerStats {
     pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
         let lang = state.language;
+        let godmode = state.godmode;
         let Some(slot) = state.working_save_slot() else {
             return;
         };
@@ -31,14 +32,17 @@ impl PlayerStats {
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], lang.t_mdrgp_stamina(), &mut data.stamina, 0.0..=1.0);
-            stat_column!(cols[1], lang.t_mdrgp_mental_health(), &mut data.mental_health, 0.0..=1.0);
-            stat_column!(cols[2], lang.t_mdrgp_mental_health_temporary(), &mut data.mental_health_temporary, 0.0..=1.0);
+            if godmode {
+                stat_column!(cols[1], lang.t_mdrgp_mental_health_temporary(), &mut data.mental_health_temporary, 0.0..=1.0);
+            }
+            stat_column!(cols[2], lang.t_mdrgp_mental_health(), &mut data.mental_health, 0.0..=1.0);
         });
 
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], lang.t_mdrgp_satiation(), &mut data.satiation, 0.0..=1.0);
-            stat_column!(cols[1], lang.t_mdrgp_health(), &mut data.health, 0.0..=1.0);
+            let lower_health = if godmode { 0.0 } else { 0.1 };
+            stat_column!(cols[1], lang.t_mdrgp_health(), &mut data.health, lower_health..=1.0);
             stat_column!(cols[2], lang.t_mdrgp_vinegara_effect_end_title(), lang.t_mdrgp_vinegara_effect_end_desc(), &mut data.vinegara_effect_end, 0..=10);
         });
 
@@ -107,7 +111,9 @@ impl PlayerStats {
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], lang.t_mdrgp_last_worked_at_day(), &mut data.last_worked_at_day, 0..=i32::MAX); // TODO: based on real day
-            stat_column!(cols[1], lang.t_mdrgp_last_went_to_church_at_title(), lang.t_mdrgp_last_went_to_church_at_desc(), &mut data.last_went_to_church_at, 0..=i32::MAX);
+            if godmode {
+                stat_column!(cols[1], lang.t_mdrgp_last_went_to_church_at_title(), lang.t_mdrgp_last_went_to_church_at_desc(), &mut data.last_went_to_church_at, 0..=i32::MAX);
+            }
             stat_column!(cols[2], lang.t_mdrgp_last_cuddled_at_title(), lang.t_mdrgp_last_cuddled_at_desc(), &mut data.last_cuddled_at, 0..=i32::MAX);
         });
 

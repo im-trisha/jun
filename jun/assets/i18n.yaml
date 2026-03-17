@@ -80,17 +80,26 @@ error:
 
 topbar:
   file:
-    en: File
-    it: File
-  file_quit:
-    en: Quit
-    it: Esci
-  file_open:
-    en: Open
-    it: Apri
-  file_open_recent:
-    en: Open recent saves
-    it: Apri salvataggi recenti
+    label:
+      en: File
+      it: File
+    quit:
+      en: Quit
+      it: Esci
+    open:
+      en: Open
+      it: Apri
+    open_recent:
+      en: Open recent saves
+      it: Apri salvataggi recenti
+
+  about:
+    label:
+      en: About
+      it: Riguardo l'app
+    body:
+      en: This application was made with heart (and egui) in rust
+      it: Quest'applicazione è stata fatta con il cuore (ed egui) in rust
 
 fd:
   mdrg:

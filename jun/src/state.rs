@@ -25,6 +25,8 @@ pub struct JunAppState {
     pub working_file: Option<MDRGSaveFile>,
     #[serde(skip)]
     working_save_slot: Option<WorkingSaveSlot>,
+    #[serde(skip)]
+    pub show_about: bool,
 }
 
 impl Default for JunAppState {
@@ -40,6 +42,7 @@ impl Default for JunAppState {
         Self {
             language,
             godmode: false,
+            show_about: false,
             recent_paths: Default::default(),
             errors: Default::default(),
             working_file: Default::default(),
