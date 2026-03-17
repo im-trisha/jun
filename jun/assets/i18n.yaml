@@ -3,6 +3,14 @@ app:
     en: Jun
     it: Jun
 
+  languages:
+    it:
+      en: "Italian"
+      it: "Italiano"
+    en:
+      en: "English"
+      it: "Inglese"
+
 screens:
   empty:
     en: Jun
@@ -92,6 +100,18 @@ topbar:
     open_recent:
       en: Open recent saves
       it: Apri salvataggi recenti
+
+  settings:
+    label:
+      en: Settings
+      it: Impostazioni
+    language:
+      label:
+        en: Language
+        it: Lingua
+    godmode:
+      en: "Godmode"
+      it: "Godmode"
 
   about:
     label:

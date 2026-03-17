@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use egui::Ui;
 
-use crate::JunApp;
+use crate::{JunApp, Language};
 
 impl JunApp {
     fn file(&mut self, ctx: &egui::Context, ui: &mut Ui) {
@@ -40,7 +40,18 @@ impl JunApp {
         });
     }
 
-    fn settings(&mut self, ui: &mut Ui) {}
+    fn settings(&mut self, ui: &mut Ui) {
+        ui.menu_button(self.t_topbar_settings_label(), |ui| {
+            ui.menu_button(self.t_topbar_settings_language_label(), |ui| {
+                for lang in Language::VALUES {
+                    ui.selectable_value(&mut self.state.language, *lang, lang.name());
+                }
+            });
+
+            let lang = self.state.language;
+            ui.checkbox(&mut self.state.godmode, lang.t_topbar_settings_godmode());
+        });
+    }
 
     fn about(&mut self, ctx: &egui::Context, ui: &mut Ui) {
         if ui.button(self.t_topbar_about_label()).clicked() {
