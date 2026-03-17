@@ -30,3 +30,21 @@ pub mod substates;
 pub use save::MDRGSaveFile;
 pub use save::MDRGSaveRecord;
 pub use save::MDRGSaveSlot;
+
+/// Contains interesting consts contained all around
+/// the original code
+pub struct MdrgK;
+
+impl MdrgK {
+    pub const MAX_MONEY: i32 = 2000000000;
+    pub const MAX_OWNED_STOCK_COUNT_SINGLE: i32 = 25000;
+
+    pub const SAVES_PER_FOLDER: i32 = 7;
+    pub const FOLDER_COUNT: i32 = 15;
+    pub const AUTO_SAVE_COUNT: i32 = 30;
+
+    pub const LIKE_START: i32 = 50;
+    pub const AFFECTION_START: i32 = 200;
+    pub const LOVE_START: i32 = 500;
+    pub const SUPER_LOVE_START: i32 = 1000;
+}

@@ -68,6 +68,10 @@ impl JunAppState {
         coll.get_mut(slot_info.slot_idx)
     }
 
+    pub fn unset_working_save_slot(&mut self) {
+        self.working_save_slot = None;
+    }
+
     pub fn set_working_save_slot(
         &mut self,
         slot_number: i32,

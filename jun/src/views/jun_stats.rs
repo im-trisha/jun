@@ -28,7 +28,7 @@ impl JunStats {
 
         #[rustfmt::skip]
         ui.columns(3, |cols| {
-            stat_column!(cols[0], "Sympathy", &mut data.sympathy, 0..=i32::MAX);
+            stat_column!(cols[0], "Sympathy", "How much she likes you", &mut data.sympathy, 0..=i32::MAX);
             stat_column!(cols[1], "Mood", "Jun's current mood", &mut data.mood, -1.0..=1.0);
             stat_column!(cols[2], "Intelligence", &mut data.intelligence, 0..=i32::MAX);
         });

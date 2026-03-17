@@ -28,25 +28,30 @@ macro_rules! try_i18n {
 
 #[macro_export]
 macro_rules! stat_column {
-    ($col:expr, $title:expr, $desc:expr, $val:expr, $range:expr) => {
-        $col.vertical(|ui| {
+    ($ui:expr, $title:expr, $desc:expr, $val:expr, $range:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(8.0);
             ui.heading($title);
             ui.label($desc);
-            ui.add(egui::DragValue::new($val).range($range));
+            ui.add(egui::DragValue::new($val).speed(0.1).range($range));
+            ui.add_space(8.0);
         });
     };
-    ($col:expr, $title:expr, $val:expr, $range:expr) => {
-        $col.vertical(|ui| {
+    ($ui:expr, $title:expr, $val:expr, $range:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(8.0);
             ui.heading($title);
-            ui.add(egui::DragValue::new($val).range($range));
+            ui.add(egui::DragValue::new($val).speed(0.1).range($range));
+            ui.add_space(8.0);
         });
     };
 }
 
 #[macro_export]
 macro_rules! text_column {
-    ($col:expr, $title:expr, $desc:expr, $val:expr) => {
-        $col.vertical(|ui| {
+    ($ui:expr, $title:expr, $desc:expr, $val:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(8.0);
             ui.heading($title);
             ui.label($desc);
             ui.text_edit_singleline($val);
@@ -54,8 +59,9 @@ macro_rules! text_column {
         });
     };
 
-    ($col:expr, $title:expr, $val:expr) => {
-        $col.vertical(|ui| {
+    ($ui:expr, $title:expr, $val:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(8.0);
             ui.heading($title);
             ui.text_edit_singleline($val);
             ui.add_space(32.0);
@@ -65,13 +71,26 @@ macro_rules! text_column {
 
 #[macro_export]
 macro_rules! bool_column {
-    ($col:expr, $title:expr, $desc:expr, $val:expr) => {
-        $col.vertical(|ui| {
+    ($ui:expr, $title:expr, $desc:expr, $val:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(8.0);
             ui.heading($title);
             ui.horizontal(|ui| {
                 ui.label($desc);
                 ui.checkbox($val, "")
             });
+            ui.add_space(32.0);
+        });
+    };
+}
+
+#[macro_export]
+macro_rules! heading_column {
+    ($ui:expr, $title:expr) => {
+        $ui.vertical(|ui| {
+            ui.add_space(32.);
+            ui.label(RichText::new($title).size(32.));
+            ui.add_space(32.);
         });
     };
 }

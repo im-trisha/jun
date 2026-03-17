@@ -53,6 +53,8 @@ impl JunApp {
             self.t_error_parsing_file()
         );
 
+        self.state.unset_working_save_slot();
+
         self.state.working_file = Some(picked);
         self.add_recent_path(path);
     }

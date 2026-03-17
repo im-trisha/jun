@@ -40,11 +40,21 @@ impl Screens {
 
     pub fn show(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
         match &mut *self {
-            Screens::Empty(empty_screen) => empty_screen.ui(ui, state),
-            Screens::SaveSlotPicker(save_slot_picker) => save_slot_picker.ui(ui, state),
-            Screens::JunStats(jun_stats) => jun_stats.ui(ui, state),
-            Screens::PlayerStats(player_stats) => player_stats.ui(ui, state),
-            Screens::GameProgression(game_progression) => game_progression.ui(ui, state),
+            Screens::Empty(empty_screen) => {
+                empty_screen.ui(ui, state);
+            }
+            Screens::SaveSlotPicker(save_slot_picker) => {
+                save_slot_picker.ui(ui, state);
+            }
+            Screens::JunStats(jun_stats) => {
+                egui::ScrollArea::vertical().show(ui, |ui| jun_stats.ui(ui, state));
+            }
+            Screens::PlayerStats(player_stats) => {
+                egui::ScrollArea::vertical().show(ui, |ui| player_stats.ui(ui, state));
+            }
+            Screens::GameProgression(game_progression) => {
+                egui::ScrollArea::vertical().show(ui, |ui| game_progression.ui(ui, state));
+            }
         }
     }
 }

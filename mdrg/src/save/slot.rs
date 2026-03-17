@@ -331,7 +331,7 @@ pub struct MDRGSaveSlot {
     /// In-game minutes of the last sexual activity
     #[serde(rename = "lastFuckedAt", default)]
     pub last_fucked_at: i32,
-    /// In-game minutes of the last interaction with the Jun
+    /// In-game minutes of the last interaction with Jun
     #[serde(rename = "lastInteractAt", default)]
     pub last_interact_at: i32,
     /// In-game minutes of the last equipment screen visit
