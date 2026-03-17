@@ -97,3 +97,324 @@ fd:
     filetype:
       en: My Dystopian Robot Girlfriend save file
       it: Salvataggio My Dystopian Robot Girlfriend
+
+mdrgp:
+  bot_name:
+    title:
+      en: "Name"
+      it: "Nome"
+    desc:
+      en: "Jun is a lovely girlfriend, you'd be a real gentleman keeping her name as such :)"
+      it: "Jun è una ragazza amorevole, saresti un vero gentiluomo a lasciare il suo nome così com'è :)"
+  lust:
+    en: "Lust"
+    it: "Lussuria"
+  current_horniness:
+    title:
+      en: "Current horniness"
+      it: "Eccitazione attuale"
+    desc:
+      en: "Jun's current arousal level"
+      it: "Il livello attuale di eccitazione di Jun"
+  longing:
+    title:
+      en: "Longing"
+      it: "Desiderio"
+    desc:
+      en: "Jun's accumulated horniness"
+      it: "L'eccitazione accumulata di Jun"
+  sympathy:
+    title:
+      en: "Sympathy"
+      it: "Simpatia"
+    desc:
+      en: "How much she likes you"
+      it: "Quanto le piaci"
+  mood:
+    title:
+      en: "Mood"
+      it: "Umore"
+    desc:
+      en: "Jun's current mood"
+      it: "L'umore attuale di Jun"
+  intelligence:
+    en: "Intelligence"
+    it: "Intelligenza"
+  cum_inside:
+    title:
+      en: "Cum inside"
+      it: "Sborra all'interno"
+    desc:
+      en: "Volume of sperm inside Jun's vagina (mL)"
+      it: "Volume di sperma nella vagina di Jun (mL)"
+  cum_inside_anal:
+    title:
+      en: "Cum inside anal"
+      it: "Sborra all'interno (anale)"
+    desc:
+      en: "Volume of sperm inside Jun's anus (mL)"
+      it: "Volume di sperma nell'ano di Jun (mL)"
+  cum_inside_stomach:
+    title:
+      en: "Cum inside stomach"
+      it: "Sborra all'interno (stomaco)"
+    desc:
+      en: "Volume of sperm inside Jun's stomach (mL)"
+      it: "Volume di sperma nello stomaco di Jun (mL)"
+
+  player_name:
+    title:
+      en: "Name"
+      it: "Nome"
+    desc:
+      en: "The player's real name is anon"
+      it: "Il vero nome del giocatore è anon"
+  status_text:
+    title:
+      en: "Status text"
+      it: "Testo di stato"
+    desc:
+      en: "The status text shown on the top left, most of the time used for the rent, you can keep this empty"
+      it: "Il testo di stato mostrato in alto a sinistra, di solito usato per l'affitto, puoi lasciarlo vuoto"
+  heading_health:
+    en: "Health"
+    it: "Salute"
+  stamina:
+    en: "Stamina"
+    it: "Resistenza"
+  mental_health:
+    en: "Mental health"
+    it: "Salute mentale"
+  mental_health_temporary:
+    en: "Mental health (temporary)"
+    it: "Salute mentale (temporanea)"
+  satiation:
+    en: "Satiation"
+    it: "Sazietà"
+  health:
+    en: "Health"
+    it: "Salute"
+  vinegara_effect_end:
+    title:
+      en: "Vinegara effect end"
+      it: "Fine effetto Vinegara"
+    desc:
+      en: "The time (In game minutes) when Vinegara (drug) effect will end"
+      it: "Il tempo (in minuti di gioco) in cui l'effetto della Vinegara (medicina) finirà"
+  death_grip_effect_end:
+    title:
+      en: "Death grip effect end"
+      it: "Fine effetto Death Grip"
+    desc:
+      en: "The time (In game minutes) when Death Grip (drug) effect will end"
+      it: "Il tempo (in minuti di gioco) in cui l'effetto del Death Grip (medicina) finirà"
+  max_cum:
+    title:
+      en: "Max cum"
+      it: "Sborra massima"
+    desc:
+      en: "Maximum amount of sperm the player can hold"
+      it: "Quantità massima di sperma che il giocatore può avere"
+  remaining_cum:
+    title:
+      en: "Remaining cum"
+      it: "Sborra rimanente"
+    desc:
+      en: "Current amount of sperm"
+      it: "Quantità attuale di sperma rimanente"
+  heading_minigames:
+    en: "Minigames"
+    it: "Minigiochi"
+  times_won_old_maid:
+    en: "Old maid wins"
+    it: "Vittorie a Old Maid"
+  times_lost_old_maid:
+    en: "Old maid losses"
+    it: "Sconfitte a Old Maid"
+  times_ran_away_old_maid:
+    en: "Old maid ran away"
+    it: "Fughe da Old Maid"
+  times_won_chess:
+    en: "Chess wins"
+    it: "Vittorie a scacchi"
+  times_lost_chess:
+    en: "Chess losses"
+    it: "Sconfitte a scacchi"
+  times_won_word_chain:
+    en: "Word chain wins"
+    it: "Vittorie a Word Chain"
+  times_lost_word_chain:
+    en: "Word chain losses"
+    it: "Sconfitte a Word Chain"
+  heading_nasty:
+    en: "Nasty"
+    it: "Sconcezze"
+  times_came_inside:
+    en: "Times came inside (Vagina)"
+    it: "Sborrate dentro (Vagina)"
+  times_came_inside_anal:
+    en: "Times came inside (Anus)"
+    it: "Sborrate dentro (Ano)"
+  times_came_in_mouth:
+    en: "Times came inside (Mouth)"
+    it: "Sborrate dentro (Bocca)"
+  times_came_outside:
+    en: "Times came outside"
+    it: "Sborrate fuori"
+  ml_came_in_mouth:
+    en: "Volume (mL) mouth"
+    it: "Volume (mL) bocca"
+  ml_of_cum_wasted:
+    title:
+      en: "Volume (mL) outside"
+      it: "Volume (mL) fuori"
+    desc:
+      en: "Volume (mL) ejaculated anywhere outside of Jun's orifices"
+      it: "Volume (mL) eiaculato fuori dagli orifizi di Jun"
+  heading_streaming_economy:
+    en: "Streaming/Economy"
+    it: "Streaming/Economia"
+  stream_count:
+    title:
+      en: "Stream count"
+      it: "Conteggio stream"
+    desc:
+      en: "Total number of streams"
+      it: "Numero totale di stream"
+  streamed_for:
+    title:
+      en: "Streamed for"
+      it: "Tempo di streaming"
+    desc:
+      en: "Total in game minutes spent streaming"
+      it: "Minuti di gioco totali spesi in streaming"
+  money_earned_from_donations:
+    title:
+      en: "Donations money"
+      it: "Soldi da donazioni"
+    desc:
+      en: "Total money earned from stream donations"
+      it: "Soldi totali guadagnati dalle donazioni degli stream"
+  longest_stream:
+    title:
+      en: "Longest stream"
+      it: "Stream più lunga"
+    desc:
+      en: "Total in game minutes of the longest stream"
+      it: "Minuti di gioco totali dello stream più lungo"
+  subs:
+    en: "Subs"
+    it: "Iscrizioni"
+  followers:
+    en: "Followers"
+    it: "Followers"
+  money:
+    en: "Money"
+    it: "Soldi"
+  casino_tokens:
+    en: "Casino tokens"
+    it: "Gettoni del casinò"
+  last_streamed_at:
+    title:
+      en: "Last streamed at"
+      it: "Ultima stream"
+    desc:
+      en: "In-game minute of the last streaming session"
+      it: "Minuto di gioco dell'ultima sessione di streaming"
+  heading_time_based_stats:
+    en: "Time based stats"
+    it: "Statistiche temporali"
+  last_worked_at_day:
+    en: "Last work day"
+    it: "Ultimo giorno di lavoro"
+  last_went_to_church_at:
+    title:
+      en: "Last church time"
+      it: "Ultima visita in chiesa"
+    desc:
+      en: "The last time (In game minutes) when you went to church"
+      it: "L'ultima volta (in minuti di gioco) che sei andato in chiesa"
+  last_cuddled_at:
+    title:
+      en: "Last cuddle time"
+      it: "Ultime coccole"
+    desc:
+      en: "The last time (In game minutes) when you cuddled with Jun"
+      it: "L'ultima volta (in minuti di gioco) che hai fatto le coccole con Jun"
+  last_slept_with_bot:
+    title:
+      en: "Slept with Jun"
+      it: "Dormito con Jun"
+    desc:
+      en: "Did you sleep with Jun yet?"
+      it: "Hai già dormito con Jun?"
+  last_woke_up_at:
+    title:
+      en: "Last woke up"
+      it: "Ultimo risveglio"
+    desc:
+      en: "The last time (In game minutes) when you woke up"
+      it: "L'ultima volta (in minuti di gioco) che ti sei svegliato"
+  last_fucked_at:
+    title:
+      en: "Last intercourse"
+      it: "Ultimo rapporto"
+    desc:
+      en: "The last time (In game minutes) when you had an intercourse with Jun"
+      it: "L'ultima volta (in minuti di gioco) che hai avuto un rapporto con Jun"
+  last_interact_at:
+    title:
+      en: "Last interaction"
+      it: "Ultima interazione"
+    desc:
+      en: "The last time (In game minutes) when you interacted with Jun"
+      it: "L'ultima volta (in minuti di gioco) che hai interagito con Jun"
+  last_equipment_at:
+    title:
+      en: "Last equipment session"
+      it: "Ultima sessione equipaggiamento"
+    desc:
+      en: "The last time (In game minutes) when you opened the equipment scene"
+      it: "L'ultima volta (in minuti di gioco) che hai aperto la scena dell'equipaggiamento"
+  last_outside_with_bot_at:
+    title:
+      en: "Last outside"
+      it: "Ultima uscita"
+    desc:
+      en: "The last time (In game minutes) when you were outside with Jun"
+      it: "L'ultima volta (in minuti di gioco) che sei stato fuori con Jun"
+  last_headpatted_at:
+    title:
+      en: "Last headpat"
+      it: "Ultima carezza"
+    desc:
+      en: "The last time (In game minutes) when you headpatted Jun"
+      it: "L'ultima volta (in minuti di gioco) che hai accarezzato Jun"
+  last_hunger_info_at:
+    title:
+      en: "Last hunger notification"
+      it: "Ultima notifica fame"
+    desc:
+      en: "The last time (In game minutes) when you got an hunger notification"
+      it: "L'ultima volta (in minuti di gioco) che hai ricevuto una notifica sulla fame"
+  last_mental_health_info_at:
+    title:
+      en: "Last mental notification"
+      it: "Ultima notifica salute mentale"
+    desc:
+      en: "The last time (In game minutes) when you got a mental health notification"
+      it: "L'ultima volta (in minuti di gioco) che hai ricevuto una notifica sulla salute mentale"
+  last_talked_at:
+    title:
+      en: "Last talk"
+      it: "Ultima conversazione"
+    desc:
+      en: "The last time (In game minutes) you talked with Jun"
+      it: "L'ultima volta (in minuti di gioco) che hai parlato con Jun"
+  last_bot_started_talk_at:
+    title:
+      en: "Last bot talk"
+      it: "Ultima conversazione di Jun"
+    desc:
+      en: "The last time (In game minutes) when Jun started a talk with you"
+      it: "L'ultima volta (in minuti di gioco) che Jun ha iniziato una conversazione con te"
