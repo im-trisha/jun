@@ -44,8 +44,8 @@ impl PlayerStats {
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], "Death grip effect end", "The time (In game minutes) when Death Grip (drug) effect will end", &mut data.death_grip_effect_end, 0..=i32::MAX);
-            stat_column!(cols[1], "Max cum", "Desc", &mut data.max_cum, 0..=10);
-            stat_column!(cols[2], "Remaining cum", "Desc", &mut data.remaining_cum, 0..=10);
+            stat_column!(cols[1], "Max cum", "Desc", &mut data.max_cum, 0..=i32::MAX);
+            stat_column!(cols[2], "Remaining cum", "Desc", &mut data.remaining_cum, 0..=i32::MAX);
         });
 
         heading_column!(ui, "Minigames");
@@ -90,15 +90,15 @@ impl PlayerStats {
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], "Longest stream", "Total in game minutes of the longest stream", &mut data.longest_stream, 0..=i32::MAX);
-            stat_column!(cols[1], "Subs", &mut data.subs, 0..=10);
-            stat_column!(cols[2], "Followers", &mut data.followers, 0..=10);
+            stat_column!(cols[1], "Subs", &mut data.subs, 0..=i32::MAX);
+            stat_column!(cols[2], "Followers", &mut data.followers, 0..=i32::MAX);
         });
 
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], "Money", &mut data.money, 0..=i32::MAX);
             stat_column!(cols[1], "Casino tokens", &mut data.casino_tokens, 0..=i32::MAX);
-            stat_column!(cols[2], "Last streamed at", "In-game minute of the last streaming session", &mut data.last_streamed_at, 0..=10);
+            stat_column!(cols[2], "Last streamed at", "In-game minute of the last streaming session", &mut data.last_streamed_at, 0..=i32::MAX);
         });
 
         heading_column!(ui, "Time based stats");
