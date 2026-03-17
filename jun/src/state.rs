@@ -16,6 +16,8 @@ pub struct JunAppState {
     pub language: Language,
     /// A list of files we precedently worked with
     pub recent_paths: Vec<PathBuf>,
+    /// If the user is a poweruser and wants to see settings that possibly break the save file
+    pub godmode: bool,
     /// Already internationalized error string
     #[serde(skip)]
     pub errors: Vec<String>,
@@ -37,6 +39,7 @@ impl Default for JunAppState {
 
         Self {
             language,
+            godmode: false,
             recent_paths: Default::default(),
             errors: Default::default(),
             working_file: Default::default(),

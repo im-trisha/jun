@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use crate::{JunAppState, stat_column, text_column, try_i18n};
 
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
-pub struct JunStats;
+pub struct JunStats {}
 
 impl JunStats {
     pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {

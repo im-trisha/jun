@@ -3,7 +3,8 @@ use serde::{Deserialize, Serialize};
 use crate::JunAppState;
 
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
-pub struct GameProgression;
+pub struct GameProgression {}
+
 // TODO: maybe pub story_flags: Vec<Flag>,
 impl GameProgression {
     pub fn ui(&mut self, _ui: &mut egui::Ui, _state: &mut JunAppState) {
