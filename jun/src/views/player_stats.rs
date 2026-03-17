@@ -3,7 +3,7 @@ use egui::RichText;
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
-pub struct PlayerStats {}
+pub struct PlayerStats;
 
 impl PlayerStats {
     pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {

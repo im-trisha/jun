@@ -39,7 +39,7 @@ impl JunApp {
                 }
 
                 if ui.input_mut(|i| i.consume_key(Modifiers::CTRL, Key::S))
-                    && let Some(path) = self.state.worked_with.last()
+                    && let Some(path) = self.state.recent_paths.last()
                 {
                     self.export_save(path.clone());
                 }

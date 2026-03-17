@@ -84,13 +84,13 @@ impl JunApp {
     }
 
     pub fn add_recent_path(&mut self, path: PathBuf) {
-        if let Some(pos) = self.state.worked_with.iter().position(|x| *x == path) {
-            self.state.worked_with.remove(pos);
+        if let Some(pos) = self.state.recent_paths.iter().position(|x| *x == path) {
+            self.state.recent_paths.remove(pos);
         }
-        self.state.worked_with.insert(0, path);
+        self.state.recent_paths.insert(0, path);
 
-        while self.state.worked_with.len() > 8 {
-            self.state.worked_with.pop();
+        while self.state.recent_paths.len() > 8 {
+            self.state.recent_paths.pop();
         }
     }
 }

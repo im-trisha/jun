@@ -14,8 +14,8 @@ pub struct WorkingSaveSlot {
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
 pub struct JunAppState {
     pub language: Language,
-    // A list of files we precedently worked with
-    pub worked_with: Vec<PathBuf>,
+    /// A list of files we precedently worked with
+    pub recent_paths: Vec<PathBuf>,
     /// Already internationalized error string
     #[serde(skip)]
     pub errors: Vec<String>,
@@ -37,7 +37,7 @@ impl Default for JunAppState {
 
         Self {
             language,
-            worked_with: Default::default(),
+            recent_paths: Default::default(),
             errors: Default::default(),
             working_file: Default::default(),
             working_save_slot: Default::default(),

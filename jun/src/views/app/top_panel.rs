@@ -20,13 +20,13 @@ impl JunApp {
                         self.load_save(path);
                     }
 
-                    if self.state.worked_with.is_empty() {
+                    if self.state.recent_paths.is_empty() {
                         return;
                     }
 
                     ui.menu_button(self.t_topbar_file_open_recent(), |ui| {
                         let mut selected_path: Option<PathBuf> = None;
-                        for path in &self.state.worked_with {
+                        for path in &self.state.recent_paths {
                             if ui.button(path.to_string_lossy()).clicked() {
                                 selected_path = Some(path.clone());
                             }
