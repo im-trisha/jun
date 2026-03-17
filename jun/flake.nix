@@ -1,5 +1,5 @@
 {
-  description = "eframe devShell";
+  description = "MDRG Save file editor";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
