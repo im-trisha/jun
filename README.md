@@ -1,1 +1,3 @@
-Whoos, forgot about this in the initial commit! I'm gonna fill things up sooner or later!
+# Jun
+
+Jun is a GUI made to edit (My Dystopian Robot Girlfriend)[https://incontinentcell.itch.io/factorial-omega] save files.
