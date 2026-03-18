@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 /// The type of an event
 ///
-/// The C# type is `EventEnum` (TypeDefIndex: 1337)
+/// The C# type is `EventEnum` (`TypeDefIndex`: 1337)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[repr(i32)]
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
@@ -30,7 +30,7 @@ pub enum EventType {
 
 /// Raw event payload, this struct is obsolete and left for backwards compatibility
 ///
-/// The C# type is `EventHolder` (TypeDefIndex: 1336)
+/// The C# type is `EventHolder` (`TypeDefIndex`: 1336)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -45,7 +45,7 @@ pub struct EventHolder {
 
 /// A game event
 ///
-/// The C# type is `EventManager.NormalEvent` (TypeDefIndex: 1332)
+/// The C# type is `EventManager.NormalEvent` (`TypeDefIndex`: 1332)
 // TODO: this obsolete too?
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
@@ -61,7 +61,7 @@ pub struct NormalEvent {
 
 /// Manages all the in-game events
 ///
-/// The C# type is `EventManager` (TypeDefIndex: 1335)
+/// The C# type is `EventManager` (`TypeDefIndex`: 1335)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize, Default)]

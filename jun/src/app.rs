@@ -23,6 +23,7 @@ impl Deref for JunApp {
 }
 
 impl JunApp {
+    #[must_use]
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         // This is also where you can customize the look and feel of egui using
         // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
@@ -36,6 +37,7 @@ impl JunApp {
         }
     }
 
+    #[must_use]
     pub fn mdrg_file_dialog(&self) -> rfd::FileDialog {
         rfd::FileDialog::new().add_filter(self.t_fd_mdrg_filetype(), &["mdrg"])
     }

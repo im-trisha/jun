@@ -14,17 +14,19 @@ pub enum Language {
 impl Language {
     pub const VALUES: &'static [Self] = &[Self::It, Self::En];
 
+    #[must_use] 
     pub fn from_locale(locale: &str) -> Option<Self> {
         match locale.split('-').next().unwrap_or("") {
-            "it" => Some(Language::It),
-            "en" => Some(Language::En),
+            "it" => Some(Self::It),
+            "en" => Some(Self::En),
             _ => None,
         }
     }
+    #[must_use] 
     pub fn name(&self) -> &'static str {
         match self {
-            Language::It => self.t_app_languages_it(),
-            Language::En => self.t_app_languages_en(),
+            Self::It => self.t_app_languages_it(),
+            Self::En => self.t_app_languages_en(),
         }
     }
 }

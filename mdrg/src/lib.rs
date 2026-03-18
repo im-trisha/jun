@@ -6,7 +6,7 @@
 //! each module groups related C# classes
 //!
 //! As a sidenote, I don't know a lot about unity games RE,
-//! neither I know if the TypeDefIndex is constant between
+//! neither I know if the `TypeDefIndex` is constant between
 //! IL2CPP disassembly runs, but I kept it for at least helping myself
 //! going back and forth through the dump code
 //!

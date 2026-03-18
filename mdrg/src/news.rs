@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::common::GameId;
 
-/// A deprecated, NewsId
+/// A deprecated, `NewsId`
 ///
 /// You can check out the variants documentation to
 /// understand better what this structure's purpose is
@@ -15,7 +15,7 @@ use crate::common::GameId;
 #[serde(from = "i32", into = "i32")]
 pub enum NewsId {
     /// Invalid Id, this means that the news doesn't use this format anymore,
-    /// instead it prefers the [GameId] to orchestrate the type news type
+    /// instead it prefers the [`GameId`] to orchestrate the type news type
     ///
     /// Remember, this property is deprecated and only used in old save files!
     NotValid = -1,
@@ -37,12 +37,12 @@ pub enum NewsId {
 
 /// A single news article slot with its seed for procedural generation.
 ///
-/// The C# type is `NewsDataManager.NewsData` (TypeDefIndex: 15)
+/// The C# type is `NewsDataManager.NewsData` (`TypeDefIndex`: 15)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct NewsData {
-    /// Numeric id of the news item, deprecated over [NewsData.game_id],
+    /// Numeric id of the news item, deprecated over [`NewsData.game_id`],
     /// in newer versions it has a default value of -1
     #[serde(rename = "newsId")]
     pub news_id: i32,
@@ -60,7 +60,7 @@ pub struct NewsData {
 
 /// Holds all five current news slots shown in the game browser
 ///
-/// The C# type is `NewsDataManager` (TypeDefIndex: 17)
+/// The C# type is `NewsDataManager` (`TypeDefIndex`: 17)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

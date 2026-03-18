@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 
 use crate::items::Item;
 
-/// A pending FedUp delivery package
+/// A pending `FedUp` delivery package
 ///
-/// The C# type is `DeliveryManager.Delivery` (TypeDefIndex: 1296)
+/// The C# type is `DeliveryManager.Delivery` (`TypeDefIndex`: 1296)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -30,9 +30,9 @@ pub struct Delivery {
     pub sender: serde_json::Value,
 }
 
-/// State of the FedUp deliveries
+/// State of the `FedUp` deliveries
 ///
-/// The C# type is `DeliveryManager` (TypeDefIndex: 1299)
+/// The C# type is `DeliveryManager` (`TypeDefIndex`: 1299)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

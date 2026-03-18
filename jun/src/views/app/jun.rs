@@ -19,7 +19,7 @@ impl eframe::App for JunApp {
         let ok_label = self.t_ok();
         self.state.errors.retain(|error| {
             let mut keep = true;
-            let win_id = format!("{:p}", error as *const _);
+            let win_id = format!("{:p}", std::ptr::from_ref(error));
 
             egui::Window::new(error_label)
                 .id(win_id.into())

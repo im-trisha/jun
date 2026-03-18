@@ -18,7 +18,7 @@ use crate::substates::{
 
 /// The root save-file object
 ///
-/// The C# type is `GameVariables` (TypeDefIndex: 1329)
+/// The C# type is `GameVariables` (`TypeDefIndex`: 1329)
 ///
 /// Fields marked `[Obsolete]` in C# are preserved here for round-trip
 /// compatibility with older saves (Hopefully, don't put any faith in this, I didn't verify)
@@ -69,11 +69,11 @@ pub struct MDRGSaveSlot {
     /// Bot console state
     #[serde(rename = "botStatusAppManager")]
     pub bot_console: BotStatusAppState,
-    /// JoinUs blog state
+    /// `JoinUs` blog state
     #[serde(rename = "joinUsBlogManager")]
     pub join_us_blog: JoinUsBlogState,
     /// Arbitrary custom key-value variables for modding, may be used by the main game too,
-    /// check out the documentation of [SpecialVariablesHolder] for more information
+    /// check out the documentation of [`SpecialVariablesHolder`] for more information
     #[serde(rename = "customData")]
     pub custom_data: SpecialVariablesHolder,
 
@@ -192,7 +192,7 @@ pub struct MDRGSaveSlot {
     pub max_cum: f32,
     /// Remaining volume (mL) of sperm Anon has inside his testicles
     ///
-    /// [MDRGSaveSlot.max_cum] - [MDRGSaveSlot.remaining_cum] will give you the missing sperm (in mL)
+    /// [`MDRGSaveSlot.max_cum`] - [`MDRGSaveSlot.remaining_cum`] will give you the missing sperm (in mL)
     #[serde(rename = "_remainingCum")]
     pub remaining_cum: f32,
     /// Current stamina level, between 0.0 and 1.0 (1.0 means its full)
@@ -286,7 +286,7 @@ pub struct MDRGSaveSlot {
     pub bot_name: String,
     /// At what level the player is close to Jun, what "stage" their relationship is at
     ///
-    /// This can also be seen from the [DialogueChains], there will be a key for each stage up to the last one, if your stage variable is 3, you will have:
+    /// This can also be seen from the [`DialogueChains`], there will be a key for each stage up to the last one, if your stage variable is 3, you will have:
     /// ```
     /// "Dialogue/BotDialogueStage1",
     /// "Dialogue/BotDialogueStage2",
@@ -361,10 +361,10 @@ pub struct MDRGSaveSlot {
     pub last_mental_health_info_at: i32,
 
     // Stream platform stats
-    /// Current subscriber count on CockTwitch
+    /// Current subscriber count on `CockTwitch`
     #[serde(default)]
     pub subs: i32,
-    /// Current follower count on CockTwitch
+    /// Current follower count on `CockTwitch`
     #[serde(default)]
     pub followers: i32,
 }

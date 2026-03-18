@@ -37,7 +37,7 @@ where
 
 /// This type is, as the name suggests, a proxy to rustify the `SerializableDictionary<TKey, TValue>` C# type
 ///
-/// (TypeDefIndex: 2027)
+/// (`TypeDefIndex`: 2027)
 #[derive(Deserialize)]
 struct ParallelProxy<K, V> {
     keys: Vec<K>,
@@ -73,13 +73,13 @@ where
     {
         let proxy = ParallelProxy::<K, V>::deserialize(deserializer)?;
         let map = proxy.keys.into_iter().zip(proxy.values).collect();
-        Ok(KeyedValues { map })
+        Ok(Self { map })
     }
 }
 
-/// Helper to serialize only the keys of the HashMap as a sequence
+/// Helper to serialize only the keys of the `HashMap` as a sequence
 struct MapKeysSerializeWrapper<'a, K, V>(&'a HashMap<K, V>);
-impl<'a, K, V> Serialize for MapKeysSerializeWrapper<'a, K, V>
+impl<K, V> Serialize for MapKeysSerializeWrapper<'_, K, V>
 where
     K: Serialize,
 {
@@ -95,9 +95,9 @@ where
     }
 }
 
-/// Helper to serialize only the values of the HashMap as a sequence
+/// Helper to serialize only the values of the `HashMap` as a sequence
 struct MapValuesSerializeWrapper<'a, K, V>(&'a HashMap<K, V>);
-impl<'a, K, V> Serialize for MapValuesSerializeWrapper<'a, K, V>
+impl<K, V> Serialize for MapValuesSerializeWrapper<'_, K, V>
 where
     V: Serialize,
 {

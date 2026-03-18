@@ -17,7 +17,7 @@ enum SlotTabs {
 
 impl Default for SlotTabs {
     fn default() -> Self {
-        SlotTabs::Numbered(NonZeroU8::new(1).expect("Math doesn't work, 1 is <= 0"))
+        Self::Numbered(NonZeroU8::new(1).expect("Math doesn't work, 1 is <= 0"))
     }
 }
 
@@ -124,7 +124,7 @@ impl SaveSlotPicker {
                         let button = ui.add(Button::new(lang.t_screens_save_slot_picker_select()));
 
                         if Self::with_triangle(ui, button).clicked() {
-                            action_taken = Some(SlotAction::Select)
+                            action_taken = Some(SlotAction::Select);
                         }
 
                         let button = ui.button(egui_material_icons::icons::ICON_DELETE);

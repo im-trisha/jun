@@ -11,7 +11,7 @@ use crate::{
 
 /// An active modifier applied to an item
 ///
-/// The C# type is `ItemModifier` (TypeDefIndex: 1406)
+/// The C# type is `ItemModifier` (`TypeDefIndex`: 1406)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -28,7 +28,7 @@ pub struct ItemModifier {
     pub strings: Vec<KvString>,
 
     // ItemModifier-specific fields
-    /// Identifier for this ItemModifier
+    /// Identifier for this `ItemModifier`
     #[serde(rename = "_id")]
     pub game_id: GameId,
     #[serde(rename = "_l")]
@@ -48,7 +48,7 @@ pub struct DynamicItem {
 
 /// Where an item is currently stored
 ///
-/// The C# type is `Item.ItemLocationEnum` (TypeDefIndex: 1372)
+/// The C# type is `Item.ItemLocationEnum` (`TypeDefIndex`: 1372)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[repr(i32)]
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
@@ -68,7 +68,7 @@ pub enum ItemLocation {
 
 /// A single inventory item. Extends `SpecialVariablesHolder` (I/F/S bags)
 ///
-/// The C# type is `Item` (TypeDefIndex: 1390)
+/// The C# type is `Item` (`TypeDefIndex`: 1390)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -91,7 +91,7 @@ pub struct Item {
     /// Quality rating
     ///
     /// You can have a simpler understanding of the meaning of it
-    /// by using [Item.item_condition]
+    /// by using [`Item.item_condition`]
     #[serde(rename = "_quality")]
     pub quality: f32,
     /// Whether the player has marked this item as a favourite.
@@ -137,6 +137,7 @@ pub struct Item {
 }
 
 impl Item {
+    #[must_use] 
     pub fn item_condition(&self) -> ItemCondition {
         ItemCondition::from(self.quality)
     }
@@ -158,7 +159,8 @@ impl Item {
     ///
     /// You should treat this value as a normal value though,
     /// because this function does the job for you and is a transpilation of the C# code
-    pub fn get_count(&self) -> i32 {
+    #[must_use] 
+    pub const fn get_count(&self) -> i32 {
         self.count + 1
     }
 
@@ -178,7 +180,7 @@ impl Item {
     ///
     /// You should treat this value as a normal value though,
     /// because this function does the job for you and is a transpilation of the C# code
-    pub fn set_count(&mut self, count: i32) {
+    pub const fn set_count(&mut self, count: i32) {
         let count = count - 1;
 
         if count < 0 {
@@ -187,7 +189,7 @@ impl Item {
         } else if false {
             self.count = count;
         } else {
-            self.count = 1
+            self.count = 1;
         }
     }
 }

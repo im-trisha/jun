@@ -4,7 +4,7 @@ use crate::common::GameId;
 
 /// Per-fish save data recording catch statistics
 ///
-/// The C# type is `FishSave` (TypeDefIndex: 1116)
+/// The C# type is `FishSave` (`TypeDefIndex`: 1116)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -28,7 +28,7 @@ pub struct FishSave {
 
 /// State of the fishing minigame
 ///
-/// The C# type is `FishingMinigameManager` (TypeDefIndex: 1114)
+/// The C# type is `FishingMinigameManager` (`TypeDefIndex`: 1114)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

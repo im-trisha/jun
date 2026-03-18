@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 /// Legacy email format, its not serialized by the game anymore,
 /// kept probably for backwards compatibility
 ///
-/// C# types: `EmailBase` + `Email` (TypeDefIndex: 1303)
+/// C# types: `EmailBase` + `Email` (`TypeDefIndex`: 1303)
 /// Stored in [MDRGSaveSlot.emails]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
@@ -26,8 +26,8 @@ pub struct LegacyEmail {
 
 /// Current email format referencing email prefabs by id
 ///
-/// C# types: `EmailBase` + `NewEmail` (TypeDefIndex: 1304)
-/// Stored in [MDRGSaveSlot.all_emails]
+/// C# types: `EmailBase` + `NewEmail` (`TypeDefIndex`: 1304)
+/// Stored in [`MDRGSaveSlot.all_emails`]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

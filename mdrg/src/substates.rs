@@ -1,4 +1,4 @@
-//! All sub-state types stored inside [MDRGSaveSlot]
+//! All sub-state types stored inside [`MDRGSaveSlot`]
 
 mod bot_status_app;
 mod cocktracts;

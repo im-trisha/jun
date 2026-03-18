@@ -5,7 +5,7 @@ use super::Item;
 
 /// A pending item repair order placed to Shanice
 ///
-/// The C# type is `ItemRepairOrder` (TypeDefIndex: 1456)
+/// The C# type is `ItemRepairOrder` (`TypeDefIndex`: 1456)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -19,7 +19,7 @@ pub struct ItemRepairOrder {
 
 /// The status for an Annalie clothes order
 ///
-/// The C# type is `ItemOrder` (TypeDefIndex: 1454)
+/// The C# type is `ItemOrder` (`TypeDefIndex`: 1454)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[repr(i32)]
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
@@ -39,7 +39,7 @@ pub enum ItemOrderStatus {
 
 /// A pending clothing order given to Annalie
 ///
-/// The C# type is `ItemOrder` (TypeDefIndex: 1455)
+/// The C# type is `ItemOrder` (`TypeDefIndex`: 1455)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -50,6 +50,6 @@ pub struct ItemOrder {
     /// In-game minute when the order will be finished
     #[serde(rename = "OrderFinishedTime")]
     pub order_finished_at: i32,
-    /// The status of the order, check out [ItemOrderStatus] variants for more informations
+    /// The status of the order, check out [`ItemOrderStatus`] variants for more informations
     pub status: ItemOrderStatus,
 }

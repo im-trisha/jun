@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// A story flag set during gameplay
 ///
-/// The C# type is `GameVariables.Flag` (TypeDefIndex: 1320)
+/// The C# type is `GameVariables.Flag` (`TypeDefIndex`: 1320)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -22,7 +22,8 @@ pub struct StoryFlags {
 
 impl StoryFlags {
     /// Creates a new storyflag with `time` as `time_added` and `first_time_added` and 1 as 
-    pub fn new(name: String, time: i32) -> Self {
+    #[must_use] 
+    pub const fn new(name: String, time: i32) -> Self {
         Self {
             name,
             time_added: time,
@@ -32,7 +33,7 @@ impl StoryFlags {
     }
 
     /// Many thanks to brunoais, for finding them
-    /// https://gitlab.com/brunoaiss/mdrg-save-editor/-/blob/master/MDRG-save-editor.py?ref_type=heads#L34
+    /// <https://gitlab.com/brunoaiss/mdrg-save-editor/-/blob/master/MDRG-save-editor.py?ref_type=heads#L34>
     pub const KNOWN_FLAGS: &'static [&'static str] = &[
         "AfterFirstFuck",
         "afterRiots_withBot_firstTime",

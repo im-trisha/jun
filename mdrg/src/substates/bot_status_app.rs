@@ -4,7 +4,7 @@ use crate::common::Color32;
 
 /// Console appearance settings
 ///
-/// The C# type is `ConsoleStyleStruct` (TypeDefIndex: 287)
+/// The C# type is `ConsoleStyleStruct` (`TypeDefIndex`: 287)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Clone, Copy, Serialize, Deserialize)]
 pub struct ConsoleStyle {
@@ -18,7 +18,7 @@ pub struct ConsoleStyle {
 
 /// State of the bot's status console app
 ///
-/// The C# type is `BotStatusAppManager` (TypeDefIndex: 288)
+/// The C# type is `BotStatusAppManager` (`TypeDefIndex`: 288)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

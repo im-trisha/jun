@@ -27,7 +27,7 @@ pub enum CookingGameplayModifiers {
 
 /// Score data from a single cooking gameplay run
 ///
-/// The C# type is `CookingGameplayScoreData` (TypeDefIndex: 997)
+/// The C# type is `CookingGameplayScoreData` (`TypeDefIndex`: 997)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -66,7 +66,7 @@ pub struct CookingGameplayScoreData {
 
 /// Per-song save data for the cooking minigame
 ///
-/// The C# type is `CookingSongSave` (TypeDefIndex: 1016)
+/// The C# type is `CookingSongSave` (`TypeDefIndex`: 1016)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -87,7 +87,7 @@ pub struct CookingSongSave {
 
 /// State of the cooking minigame
 ///
-/// The C# type is `CookingMinigameManager` (TypeDefIndex: 1014)
+/// The C# type is `CookingMinigameManager` (`TypeDefIndex`: 1014)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

@@ -6,5 +6,5 @@ use crate::JunAppState;
 pub struct EmptyScreen {}
 
 impl EmptyScreen {
-    pub fn ui(&mut self, _ui: &mut egui::Ui, _state: &mut JunAppState) {}
+    pub const fn ui(&mut self, _ui: &mut egui::Ui, _state: &mut JunAppState) {}
 }

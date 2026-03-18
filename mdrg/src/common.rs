@@ -104,7 +104,7 @@ pub struct KvString {
     pub value: String,
 }
 
-/// Generic key-value bag attached to `Item` and the root [MDRGSaveSlot]
+/// Generic key-value bag attached to `Item` and the root [`MDRGSaveSlot`]
 ///
 /// Citing the lead developer (ΩSheep):
 ///
@@ -113,7 +113,7 @@ pub struct KvString {
 ///
 /// > This more flexible system was added later, so you can see that some of variables like quality are still just stored directly.
 ///
-/// The C# type is `SpecialVariablesHolder` (TypeDefIndex: 1362)
+/// The C# type is `SpecialVariablesHolder` (`TypeDefIndex`: 1362)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize, Default)]

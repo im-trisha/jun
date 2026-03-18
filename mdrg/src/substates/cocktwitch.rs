@@ -1,7 +1,7 @@
 use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
-/// Category of CockTwitch streamer
+/// Category of `CockTwitch` streamer
 ///
 /// The C# type is `Streamer.StreamerType`
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
@@ -31,9 +31,9 @@ pub enum StreamerType {
     Unknown(i32),
 }
 
-/// A CockTwitch streamer
+/// A `CockTwitch` streamer
 ///
-/// The C# type is `Streamer` (TypeDefIndex: 1510)
+/// The C# type is `Streamer` (`TypeDefIndex`: 1510)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -57,9 +57,9 @@ pub struct Streamer {
     pub seed: i32,
 }
 
-/// State of the CockTwitch streaming platform
+/// State of the `CockTwitch` streaming platform
 ///
-/// The C# type is `CockTwitchManager` (TypeDefIndex: 1515)
+/// The C# type is `CockTwitchManager` (`TypeDefIndex`: 1515)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

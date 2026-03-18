@@ -47,7 +47,7 @@ impl JunApp {
                 self.export_save(path.clone());
             }
 
-            self.current_screen.show(ui, &mut self.state)
+            self.current_screen.show(ui, &mut self.state);
         });
     }
 }

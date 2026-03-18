@@ -24,9 +24,9 @@ pub enum InteractionType {
     Unknown(i32),
 }
 
-/// State of the JoinUs revolutionary blog
+/// State of the `JoinUs` revolutionary blog
 ///
-/// The C# type is `JoinUsBlogManager` (TypeDefIndex: 124)
+/// The C# type is `JoinUsBlogManager` (`TypeDefIndex`: 124)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

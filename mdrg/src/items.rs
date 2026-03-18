@@ -32,7 +32,7 @@ pub struct Shop {
 
 /// A saved equipment preset (Panties, Bra, Dress...)
 ///
-/// The C# type is `EquipmentSet` (TypeDefIndex: 1363)
+/// The C# type is `EquipmentSet` (`TypeDefIndex`: 1363)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -50,7 +50,7 @@ pub struct EquipmentSet {
 
 /// Manages all in-game shops.
 ///
-/// The C# type is `ShopManager` (TypeDefIndex: 1464)
+/// The C# type is `ShopManager` (`TypeDefIndex`: 1464)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize, Default)]
@@ -65,7 +65,7 @@ pub struct ShopState {
 
 /// Root item-system manager: holds the player inventory and related orders.
 ///
-/// The C# type is `Item.ItemManager` (TypeDefIndex: 1384)
+/// The C# type is `Item.ItemManager` (`TypeDefIndex`: 1384)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize, Default)]
@@ -90,7 +90,7 @@ pub struct ItemsState {
 
 /// The type of a shop item
 ///
-/// The C# type is `ShopItem.ShopItemType` (TypeDefIndex: 1459)
+/// The C# type is `ShopItem.ShopItemType` (`TypeDefIndex`: 1459)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[repr(i32)]
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
@@ -110,7 +110,7 @@ pub enum ShopItemType {
 
 /// A shop item
 ///
-/// The C# type is `ShopItem` (TypeDefIndex: 1460)
+/// The C# type is `ShopItem` (`TypeDefIndex`: 1460)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

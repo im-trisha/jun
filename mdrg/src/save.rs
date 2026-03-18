@@ -26,7 +26,7 @@ pub enum SaveType {
 
 /// A MDRG save file, its the top-most structure in the entire crate
 ///
-/// The C# type is `SaveContainer` (TypeDefIndex: 1779)
+/// The C# type is `SaveContainer` (`TypeDefIndex`: 1779)
 #[cfg_attr(feature = "derive-debug", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

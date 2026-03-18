@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// Lifecycle status of a cocktract contract
 ///
-/// The C# type is `CocktractContract.ContractStatus` (TypeDefIndex: 1198)
+/// The C# type is `CocktractContract.ContractStatus` (`TypeDefIndex`: 1198)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[repr(i32)]
 #[derive(Clone, Copy, Serialize, Deserialize, FromPrimitive, IntoPrimitive, PartialEq, Eq)]
@@ -31,7 +31,7 @@ pub enum ContractStatus {
 
 /// A cocktract contract
 ///
-/// The C# type is `CocktractContract` (TypeDefIndex: 1201)
+/// The C# type is `CocktractContract` (`TypeDefIndex`: 1201)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -82,7 +82,7 @@ pub struct CocktractContract {
 
 /// A cocktract partner the player can work for
 ///
-/// The C# type is `CocktractPartner` (TypeDefIndex: 1207)
+/// The C# type is `CocktractPartner` (`TypeDefIndex`: 1207)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -102,9 +102,9 @@ pub struct CocktractPartner {
     pub special_data: serde_json::Value,
 }
 
-/// State of CockTwitch cocktracts
+/// State of `CockTwitch` cocktracts
 ///
-/// The C# type is `CocktractManager` (TypeDefIndex: 1205)
+/// The C# type is `CocktractManager` (`TypeDefIndex`: 1205)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

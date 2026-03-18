@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 // TODO: this should be complete, but the strange type it has on csharp suggests me otherwise...
 /// A single company on the stock exchange
 ///
-/// The C# type is `StockCompany` (TypeDefIndex: 1501)
+/// The C# type is `StockCompany` (`TypeDefIndex`: 1501)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -27,7 +27,7 @@ pub struct StockCompany {
 
 /// State of the stock market
 ///
-/// The C# type is `StockManager` (TypeDefIndex: 1502)
+/// The C# type is `StockManager` (`TypeDefIndex`: 1502)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]

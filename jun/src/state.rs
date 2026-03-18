@@ -37,9 +37,7 @@ impl Default for JunAppState {
         let locales: Vec<_> = sys_locale::get_locales().collect();
         // Gets the first preferred locale
         let language = locales
-            .iter()
-            .filter_map(|l| Language::from_locale(l))
-            .next()
+            .iter().find_map(|l| Language::from_locale(l))
             .unwrap_or(Language::En);
 
         Self {
@@ -70,15 +68,12 @@ impl JunAppState {
         let save = self.working_file.as_mut()?;
         let slot_info = self.working_save_slot.as_ref()?;
 
-        let coll = match slot_info.is_autosave {
-            true => &mut save.auto_saves,
-            false => &mut save.saves,
-        };
+        let coll = if slot_info.is_autosave { &mut save.auto_saves } else { &mut save.saves };
 
         coll.get_mut(slot_info.slot_idx)
     }
 
-    pub fn unset_working_save_slot(&mut self) {
+    pub const fn unset_working_save_slot(&mut self) {
         self.working_save_slot = None;
     }
 
@@ -99,10 +94,7 @@ impl JunAppState {
             .as_mut()
             .ok_or(lang.t_error_file_not_set())?;
 
-        let coll = match is_autosave {
-            true => &mut save.auto_saves,
-            false => &mut save.saves,
-        };
+        let coll = if is_autosave { &mut save.auto_saves } else { &mut save.saves };
 
         let idx = coll
             .iter()
