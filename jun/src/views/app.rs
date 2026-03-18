@@ -33,7 +33,7 @@ pub trait ScreenView {
 impl Screens {
     pub fn title(&self, language: Language) -> String {
         let s = match self {
-            Self::Empty(_) => language.t_screens_empty(),
+            Self::Empty(_) => language.t_screens_empty_title(),
             Self::SaveSlotPicker(_) => language.t_screens_save_slot_picker_title(),
             Self::JunStats(_) => language.t_screens_jun_stats_title(),
             Self::PlayerStats(_) => language.t_screens_player_stats_title(),

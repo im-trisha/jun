@@ -6,5 +6,8 @@ use crate::{JunAppState, views::app::ScreenView};
 pub struct EmptyScreen {}
 
 impl ScreenView for EmptyScreen {
-    fn ui(&mut self, _ui: &mut egui::Ui, _state: &mut JunAppState) {}
+    fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
+        ui.heading(state.t_screens_empty_heading());
+        ui.label(state.t_screens_empty_body());
+    }
 }

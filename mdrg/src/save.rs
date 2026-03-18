@@ -1,3 +1,4 @@
+use nt_time::chrono::NaiveDateTime;
 use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
@@ -5,6 +6,7 @@ pub use flag::StoryFlags;
 pub use slot::MDRGSaveSlot;
 
 mod dialogue_chain;
+mod filetime_chrono;
 mod flag;
 mod slot;
 
@@ -39,9 +41,12 @@ pub struct MDRGSaveFile {
     /// Global flags
     // TODO: me ffs
     pub flags: serde_json::Value,
+    /// Manual saves
     pub saves: Vec<MDRGSaveRecord>,
+    /// Automatic saves
     #[serde(rename = "autoSaves", default)]
     pub auto_saves: Vec<MDRGSaveRecord>,
+    /// The slot number used by this save file's next autosave
     #[serde(rename = "nextAutoSaveIndex", default)]
     pub next_auto_save_index: i32,
 }
@@ -50,19 +55,23 @@ pub struct MDRGSaveFile {
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct MDRGSaveRecord {
+    /// The little note on this save record
     pub notes: String,
+    // TODO: Is this notes but for backwards compatibility?
     pub description: String,
-    // TODO: change according to what sheep said
-    #[serde(rename = "_time", default)]
-    pub time: i64,
+    /// The time when this savefile was last opened
+    #[serde(with = "filetime_chrono", rename = "_time", default)]
+    pub time: NaiveDateTime,
+    /// In game time in minutes
     #[serde(rename = "ingameTime")]
     pub ingame_time: i32,
+    /// The slot of this record
     pub slot: i32,
-    #[serde(rename = "savedata")]
-    save_data: String,
+    /// The save type of this record, either autosave or manual
     #[serde(rename = "_saveType")]
     pub save_type: SaveType,
-
+    #[serde(rename = "savedata")]
+    save_data: String,
     #[serde(skip)]
     parsed_data: Option<MDRGSaveSlot>,
 }
@@ -81,7 +90,6 @@ impl MDRGSaveRecord {
             self.parsed_data = Some(serde_json::from_str(&self.save_data)?);
         }
 
-        // SAFETY: The unwrap will never panic because we assign parsed_data just before the unwrap
         Ok(self.parsed_data.as_mut().unwrap_or_else(|| unreachable!()))
     }
 

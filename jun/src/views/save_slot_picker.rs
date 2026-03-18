@@ -1,8 +1,8 @@
 use std::num::NonZeroUsize;
 
 use egui::{
-    Align, Button, Color32, Frame, Layout, Margin, Response, RichText, Shape, Stroke, TextEdit, Ui,
-    Widget, vec2,
+    Align, Button, Color32, DragValue, Frame, Layout, Margin, Response, RichText, Shape, Stroke,
+    TextEdit, Ui, Widget, vec2,
 };
 use mdrg::{MDRGSaveFile, MDRGSaveRecord};
 use serde::{Deserialize, Serialize};
@@ -87,6 +87,7 @@ impl SaveSlotPicker {
         ui: &mut Ui,
         save: &mut mdrg::MDRGSaveRecord,
         lang: Language,
+        godmode: bool,
     ) -> Option<SlotAction> {
         let mut action_taken = None;
 
@@ -99,10 +100,35 @@ impl SaveSlotPicker {
             ui.horizontal(|ui| {
                 ui.vertical(|ui| {
                     ui.horizontal(|ui| {
-                        ui.label(lang.t_screens_save_slot_picker_slot(
-                            &save.slot.to_string(),
-                            &save.ingame_time.to_string(),
-                        ));
+                        ui.label(lang.t_screens_save_slot_picker_slot(&save.slot.to_string()));
+
+                        // If in godmode, use i32::MAX (even playing one more in game minute will probably overflow back to day 0)
+                        // If not, remove 1000 days to the max value to let them be able to play 1000 more days before it happens
+                        let max_range = if godmode {
+                            i32::MAX
+                        } else {
+                            i32::MAX - (60 * 24 * 1000)
+                        };
+
+                        ui.add(
+                            DragValue::new(&mut save.ingame_time)
+                                .range(0..=max_range)
+                                .speed(60)
+                                .custom_formatter(|v, _| {
+                                    #[allow(clippy::cast_possible_truncation)]
+                                    let total_minutes = v as i32;
+
+                                    let days = total_minutes / (60 * 24);
+                                    let hours = (total_minutes / 60) % 24;
+                                    let minutes = total_minutes % 60;
+
+                                    lang.t_app_gametime_format(
+                                        &days.to_string(),
+                                        &hours.to_string(),
+                                        &minutes.to_string(),
+                                    )
+                                }),
+                        );
 
                         ui.label(
                             RichText::new(
@@ -153,14 +179,24 @@ impl SaveSlotPicker {
                 SlotTabs::Numbered(v) => {
                     let end = v.get() * 7;
                     let start = end.saturating_sub(7);
-                    let slot =
-                        Self::process_slots(ui, state.language, &mut save_file.saves, start..end);
+                    let slot = Self::process_slots(
+                        ui,
+                        state.language,
+                        &mut save_file.saves,
+                        state.godmode,
+                        start..end,
+                    );
                     (slot, false)
                 }
                 SlotTabs::AutoSave => {
                     let len = save_file.auto_saves.len();
-                    let slot =
-                        Self::process_slots(ui, state.language, &mut save_file.auto_saves, 0..len);
+                    let slot = Self::process_slots(
+                        ui,
+                        state.language,
+                        &mut save_file.auto_saves,
+                        state.godmode,
+                        0..len,
+                    );
                     (slot, true)
                 }
             })
@@ -172,10 +208,12 @@ impl SaveSlotPicker {
             state.errors.push(e);
         }
     }
+
     fn process_slots(
         ui: &mut Ui,
         language: Language,
         saves: &mut Vec<MDRGSaveRecord>,
+        godmode: bool,
         indices: impl Iterator<Item = usize>,
     ) -> Option<i32> {
         let mut delete_index = None;
@@ -186,7 +224,7 @@ impl SaveSlotPicker {
                 continue;
             };
 
-            match Self::save_slot(ui, save, language) {
+            match Self::save_slot(ui, save, language, godmode) {
                 Some(SlotAction::Delete) => delete_index = Some(i),
                 Some(SlotAction::Select) => selected_slot = Some(save.slot),
                 None => {}
