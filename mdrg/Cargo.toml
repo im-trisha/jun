@@ -1,6 +1,6 @@
 [package]
 name = "mdrg"
-version = "0.1.0"
+version = "0.90.0"
 edition = "2024"
 publish = true
 description = "A library defining the MDRG save file format structure"
@@ -17,8 +17,9 @@ workspace = true
 serde.workspace = true
 semver.workspace = true
 num_enum.workspace = true
+nt-time.workspace = true
 
-# We shouldn't use this, its temporary as long as we don't know 100% of the save file
+
 serde_json.workspace = true
 
 [features]

@@ -108,7 +108,6 @@ pub struct Item {
     pub additional_data: String,
     //TODO: AdditionalDataSlots is there and obsolete too, put it?
     /// Unique instance GUID for this specific item
-    // TODO: Instance or additional identifier? maybe clearer to write clearer doc comments
     #[serde(rename = "UniqueItemGuid")]
     pub unique_item_guid: SerializableGuid,
     /// GUIDs of items "related to each other", citing the lead developer (ΩSheep):

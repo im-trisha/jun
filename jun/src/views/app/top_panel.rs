@@ -20,23 +20,36 @@ impl JunApp {
                 self.load_save(path);
             }
 
-            if self.state.recent_paths.is_empty() {
-                return;
+            if !self.state.recent_paths.is_empty() {
+                ui.menu_button(self.t_topbar_file_open_recent(), |ui| {
+                    let mut selected_path: Option<PathBuf> = None;
+                    for path in &self.state.recent_paths {
+                        if ui.button(path.to_string_lossy()).clicked() {
+                            selected_path = Some(path.clone());
+                        }
+                    }
+
+                    if let Some(path) = selected_path {
+                        self.load_save(path.clone());
+                        self.add_recent_path(path);
+                    }
+                });
             }
 
-            ui.menu_button(self.t_topbar_file_open_recent(), |ui| {
-                let mut selected_path: Option<PathBuf> = None;
-                for path in &self.state.recent_paths {
-                    if ui.button(path.to_string_lossy()).clicked() {
-                        selected_path = Some(path.clone());
-                    }
-                }
+            ui.separator();
 
-                if let Some(path) = selected_path {
-                    self.load_save(path.clone());
-                    self.add_recent_path(path);
+            if self.state.working_file.is_some() {
+                if ui.button(self.t_topbar_file_save()).clicked()
+                    && let Some(path) = self.state.recent_paths.last()
+                {
+                    self.export_save(path.clone());
                 }
-            });
+                if ui.button(self.t_topbar_file_save_as()).clicked()
+                    && let Some(path) = self.mdrg_file_dialog().save_file()
+                {
+                    self.export_save(path);
+                }
+            }
         });
     }
 

@@ -14,7 +14,7 @@ impl JunApp {
             ui.selectable_value(
                 &mut self.current_screen,
                 Screens::Empty(EmptyScreen::default()),
-                lang.t_screens_empty(),
+                lang.t_screens_empty_title(),
             );
 
             if self.state.working_file.is_none() {

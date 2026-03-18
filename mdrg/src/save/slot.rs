@@ -79,7 +79,6 @@ pub struct MDRGSaveSlot {
 
     // Stream and church stats
     /// Total number of times the player has attended church
-    // TODO: Remove default? This is an important number for the lore, story, event thingies...
     #[serde(rename = "timesWentToChurch", default)]
     pub times_went_to_church: i32,
     /// Total number of streams completed

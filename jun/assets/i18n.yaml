@@ -11,10 +11,27 @@ app:
       en: "English"
       it: "Inglese"
 
+  gametime_format:
+    en: "Days: %{days}, hours: %{hours}, minutes: %{minutes}"
+    it: "Giorni: %{days}, ore: %{hours}, minuti: %{minutes}"
+
 screens:
   empty:
-    en: Jun
-    it: Jun
+    title:
+      en: Jun
+      it: Jun
+    heading:
+      en: "Welcome to MDRG File Editor! Read more to know how to use it"
+      it: "Benvenuto nell'editor di file MDRG! Leggi di più per sapere come usarlo"
+    body:
+      en: |
+        To use this program, open a .mdrg file you exported using the My Dystopian Robot Girlfriend's export feature; to open it, go to 'File > Open'
+        Then, go on the sidebar on the left, click on the "Save slot picker" and load the slot you wish to modify, you can then modify as you please based on the sections (That just appeared on the left side)
+        When you're done, you can save everything by going to 'File > Save', or by using the shortcut Ctrl + S, and then import inside the game using My Dystopian Robot Girlfriend's import feature
+      it: |
+        Per utilizzare questo programma, apri un file .mdrg esportato tramite la funzione di esportazione di My Dystopian Robot Girlfriend; per aprirlo, vai su 'File > Apri'
+        Ora, nella barra laterale a sinistra, clicca sul selettore di slot e carica lo slot che desideri modificare; potrai poi modificarlo a tuo piacimento in base alle sezioni (apparse sul lato sinistro)
+        Una volta terminato, puoi salvare tutto andando su 'File > Salva', oppure usando la scorciatoia Ctrl + S,  e poi importare all'interno della gioco grazie alla funzione di importazione di My Dystopian Robot Girlfriend
 
   save_slot_picker:
     title:
@@ -33,8 +50,8 @@ screens:
       en: Load
       it: Carica
     slot:
-      en: "Slot %{n}: %{s}"
-      it: "Salvataggio %{n}: %{s}"
+      en: "Slot %{n}: "
+      it: "Salvataggio %{n}: "
 
   jun_stats:
     title:
@@ -91,15 +108,21 @@ topbar:
     label:
       en: File
       it: File
-    quit:
-      en: Quit
-      it: Esci
     open:
       en: Open
       it: Apri
     open_recent:
       en: Open recent saves
       it: Apri salvataggi recenti
+    save:
+      en: Save
+      it: Salva
+    save_as:
+      en: Save as
+      it: Salva come
+    quit:
+      en: Quit
+      it: Esci
 
   settings:
     label:

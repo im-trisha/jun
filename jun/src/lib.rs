@@ -1,6 +1,4 @@
 // TODO: CURRENTLY DOESN'T WORK ON WEB BECAUSE OF FILE PICKER, I THINK, AND 100% BECAUSE I READ USING IO FNS
-// TODO: ON RELEASE CONVERT UNWRAPS TO ERROR HANDLING
-
 mod app;
 mod i18n;
 mod state;
@@ -105,7 +103,3 @@ macro_rules! heading_column {
 // /// Seen dialogue chains, key-value mapped
 // #[serde(rename = "dialogueChainData", default)]
 // pub seen_dialogue_chains: KeyedValues<String, DialogueChainMemory>,
-// // Story flags
-// /// All story and progression flags set so far
-// #[serde(default)]
-// pub story_flags: Vec<Flag>,
