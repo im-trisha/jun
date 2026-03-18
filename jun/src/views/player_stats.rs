@@ -1,12 +1,16 @@
-use crate::{JunAppState, bool_column, heading_column, stat_column, text_column, try_i18n};
-use egui::RichText;
+use crate::{
+    JunAppState, Language, bool_column, heading_column, stat_column, text_column, try_i18n,
+    views::app::ScreenView,
+};
+use egui::{RichText, Ui};
+use mdrg::MDRGSaveSlot;
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
 pub struct PlayerStats {}
 
-impl PlayerStats {
-    pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
+impl ScreenView for PlayerStats {
+    fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
         let lang = state.language;
         let godmode = state.godmode;
         let Some(slot) = state.working_save_slot() else {
@@ -28,7 +32,18 @@ impl PlayerStats {
             &mut data.status_text
         );
 
+        Self::health(ui, data, lang, godmode);
+        Self::minigames(ui, data, lang);
+        Self::nasty(ui, data, lang);
+        Self::streaming_economy(ui, data, lang);
+        Self::time_based_stats(ui, data, lang, godmode);
+    }
+}
+
+impl PlayerStats {
+    fn health(ui: &mut Ui, data: &mut MDRGSaveSlot, lang: Language, godmode: bool) {
         heading_column!(ui, lang.t_mdrgp_heading_health());
+
         #[rustfmt::skip]
         ui.columns(3, |cols| {
             stat_column!(cols[0], lang.t_mdrgp_stamina(), &mut data.stamina, 0.0..=1.0);
@@ -52,7 +67,9 @@ impl PlayerStats {
             stat_column!(cols[1], lang.t_mdrgp_max_cum_title(), lang.t_mdrgp_max_cum_desc(), &mut data.max_cum, 0..=i32::MAX);
             stat_column!(cols[2], lang.t_mdrgp_remaining_cum_title(), lang.t_mdrgp_remaining_cum_desc(), &mut data.remaining_cum, 0..=i32::MAX);
         });
+    }
 
+    fn minigames(ui: &mut Ui, data: &mut MDRGSaveSlot, lang: Language) {
         heading_column!(ui, lang.t_mdrgp_heading_minigames());
         #[rustfmt::skip]
         ui.columns(3, |cols| {
@@ -68,7 +85,9 @@ impl PlayerStats {
             stat_column!(cols[2], lang.t_mdrgp_times_won_word_chain(), &mut data.times_won_word_chain, 0..=i32::MAX);
             stat_column!(cols[3], lang.t_mdrgp_times_lost_word_chain(), &mut data.times_lost_word_chain, 0..=i32::MAX);
         });
+    }
 
+    fn nasty(ui: &mut Ui, data: &mut MDRGSaveSlot, lang: Language) {
         heading_column!(ui, lang.t_mdrgp_heading_nasty());
         #[rustfmt::skip]
         ui.columns(4, |cols| {
@@ -83,7 +102,8 @@ impl PlayerStats {
             stat_column!(cols[0], lang.t_mdrgp_ml_came_in_mouth(), &mut data.ml_came_in_mouth, 0.0..=f32::MAX);
             stat_column!(cols[2], lang.t_mdrgp_ml_of_cum_wasted_title(), lang.t_mdrgp_ml_of_cum_wasted_desc(), &mut data.ml_of_cum_wasted, 0.0..=f32::MAX);
         });
-
+    }
+    fn streaming_economy(ui: &mut Ui, data: &mut MDRGSaveSlot, lang: Language) {
         heading_column!(ui, lang.t_mdrgp_heading_streaming_economy());
         #[rustfmt::skip]
         ui.columns(3, |cols| {
@@ -105,7 +125,9 @@ impl PlayerStats {
             stat_column!(cols[1], lang.t_mdrgp_casino_tokens(), &mut data.casino_tokens, 0..=i32::MAX);
             stat_column!(cols[2], lang.t_mdrgp_last_streamed_at_title(), lang.t_mdrgp_last_streamed_at_desc(), &mut data.last_streamed_at, 0..=i32::MAX);
         });
+    }
 
+    fn time_based_stats(ui: &mut Ui, data: &mut MDRGSaveSlot, lang: Language, godmode: bool) {
         heading_column!(ui, lang.t_mdrgp_heading_time_based_stats());
 
         #[rustfmt::skip]

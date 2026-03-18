@@ -30,11 +30,9 @@ impl JunApp {
 
         egui_material_icons::initialize(&cc.egui_ctx);
 
-        if let Some(storage) = cc.storage {
+        cc.storage.map_or_else(Self::default, |storage| {
             eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default()
-        } else {
-            Default::default()
-        }
+        })
     }
 
     #[must_use]

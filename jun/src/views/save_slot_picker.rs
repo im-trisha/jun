@@ -1,4 +1,4 @@
-use std::num::NonZeroU8;
+use std::num::NonZeroUsize;
 
 use egui::{
     Align, Button, Color32, Frame, Layout, Margin, Response, RichText, Shape, Stroke, TextEdit, Ui,
@@ -11,13 +11,13 @@ use crate::{JunAppState, Language};
 
 #[derive(Clone, Copy, Eq, PartialEq, Deserialize, Serialize)]
 enum SlotTabs {
-    Numbered(NonZeroU8),
+    Numbered(NonZeroUsize),
     AutoSave,
 }
 
 impl Default for SlotTabs {
     fn default() -> Self {
-        Self::Numbered(NonZeroU8::new(1).expect("Math doesn't work, 1 is <= 0"))
+        Self::Numbered(NonZeroUsize::new(1).expect("Math doesn't work, 1 is <= 0"))
     }
 }
 
@@ -32,7 +32,7 @@ enum SlotAction {
 }
 
 impl SaveSlotPicker {
-    fn with_triangle(ui: &mut Ui, res: Response) -> Response {
+    fn with_triangle(ui: &Ui, res: Response) -> Response {
         const SIZE: f32 = 6.0;
 
         let base_pos = res.rect.left_bottom();
@@ -69,9 +69,9 @@ impl SaveSlotPicker {
 
     fn show_tab_bar(&mut self, ui: &mut Ui, save_file: &MDRGSaveFile, lang: Language) {
         ui.horizontal(|ui| {
-            let count = save_file.saves.len().div_ceil(7) as u8;
+            let count = save_file.saves.len().div_ceil(7);
             for i in 1..=count {
-                let v = NonZeroU8::new(i).expect("Math doesn't work, or the for cycle is bad");
+                let v = NonZeroUsize::new(i).expect("Math doesn't work, or the for cycle is bad");
                 self.fancy_tab_btn(ui, SlotTabs::Numbered(v), i.to_string());
             }
 
@@ -151,7 +151,7 @@ impl SaveSlotPicker {
         let (selected_slot, auto_save) = egui::ScrollArea::vertical()
             .show(ui, |ui| match self.tab {
                 SlotTabs::Numbered(v) => {
-                    let end = (v.get() * 7) as usize;
+                    let end = v.get() * 7;
                     let start = end.saturating_sub(7);
                     let slot =
                         Self::process_slots(ui, state.language, &mut save_file.saves, start..end);

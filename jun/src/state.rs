@@ -37,7 +37,8 @@ impl Default for JunAppState {
         let locales: Vec<_> = sys_locale::get_locales().collect();
         // Gets the first preferred locale
         let language = locales
-            .iter().find_map(|l| Language::from_locale(l))
+            .iter()
+            .find_map(|l| Language::from_locale(l))
             .unwrap_or(Language::En);
 
         Self {
@@ -45,10 +46,10 @@ impl Default for JunAppState {
             godmode: false,
             show_about: false,
             freaky: true,
-            recent_paths: Default::default(),
-            errors: Default::default(),
-            working_file: Default::default(),
-            working_save_slot: Default::default(),
+            recent_paths: Vec::default(),
+            errors: Vec::default(),
+            working_file: Option::default(),
+            working_save_slot: Option::default(),
         }
     }
 }
@@ -68,7 +69,11 @@ impl JunAppState {
         let save = self.working_file.as_mut()?;
         let slot_info = self.working_save_slot.as_ref()?;
 
-        let coll = if slot_info.is_autosave { &mut save.auto_saves } else { &mut save.saves };
+        let coll = if slot_info.is_autosave {
+            &mut save.auto_saves
+        } else {
+            &mut save.saves
+        };
 
         coll.get_mut(slot_info.slot_idx)
     }
@@ -77,6 +82,11 @@ impl JunAppState {
         self.working_save_slot = None;
     }
 
+    /// Sets the working save slot
+    ///
+    /// # Errors
+    ///
+    /// Returns a localized error if something occurs
     pub fn set_working_save_slot(
         &mut self,
         slot_number: i32,
@@ -92,14 +102,18 @@ impl JunAppState {
         let save = self
             .working_file
             .as_mut()
-            .ok_or(lang.t_error_file_not_set())?;
+            .ok_or_else(|| lang.t_error_file_not_set())?;
 
-        let coll = if is_autosave { &mut save.auto_saves } else { &mut save.saves };
+        let coll = if is_autosave {
+            &mut save.auto_saves
+        } else {
+            &mut save.saves
+        };
 
         let idx = coll
             .iter()
             .position(|e| e.slot == slot_number)
-            .ok_or(lang.t_error_invalid_slot())?;
+            .ok_or_else(|| lang.t_error_invalid_slot())?;
 
         self.working_save_slot = Some(WorkingSaveSlot {
             slot_idx: idx,

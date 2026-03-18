@@ -1,6 +1,9 @@
 use std::ops::IndexMut;
 
-use crate::{JunAppState, Language, bool_column, heading_column, stat_column, try_i18n};
+use crate::{
+    JunAppState, Language, bool_column, heading_column, stat_column, try_i18n,
+    views::app::ScreenView,
+};
 use egui::{RichText, Ui};
 use mdrg::{MDRGSaveSlot, save::StoryFlags};
 use serde::{Deserialize, Serialize};
@@ -8,8 +11,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameProgression {}
 
-impl GameProgression {
-    pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
+impl ScreenView for GameProgression {
+    fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
         let lang = state.language;
         let godmode = state.godmode;
         let Some(slot) = state.working_save_slot() else {
@@ -48,11 +51,13 @@ impl GameProgression {
         });
 
         if godmode {
-            self.story_flags(ui, lang, data);
+            Self::story_flags(ui, lang, data);
         }
     }
+}
 
-    fn story_flags(&self, ui: &mut Ui, lang: Language, data: &mut MDRGSaveSlot) {
+impl GameProgression {
+    fn story_flags(ui: &mut Ui, lang: Language, data: &mut MDRGSaveSlot) {
         heading_column!(ui, lang.t_mdrgp_heading_story_flags());
 
         for chunk in StoryFlags::KNOWN_FLAGS.chunks(4) {

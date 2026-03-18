@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{JunAppState, stat_column, text_column, try_i18n};
+use crate::{JunAppState, stat_column, text_column, try_i18n, views::app::ScreenView};
 
 #[derive(Default, Eq, PartialEq, Deserialize, Serialize)]
 pub struct JunStats {}
 
-impl JunStats {
-    pub fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
+impl ScreenView for JunStats {
+    fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState) {
         let lang = state.language;
         let Some(slot) = state.working_save_slot() else {
             return;

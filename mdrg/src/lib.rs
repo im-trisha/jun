@@ -36,7 +36,7 @@ pub use save::MDRGSaveSlot;
 pub struct MdrgK;
 
 impl MdrgK {
-    pub const MAX_MONEY: i32 = 2000000000;
+    pub const MAX_MONEY: i32 = 2_000_000_000;
     pub const MAX_OWNED_STOCK_COUNT_SINGLE: i32 = 25000;
 
     pub const SAVES_PER_FOLDER: i32 = 7;

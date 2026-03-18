@@ -69,5 +69,5 @@ all = { level = "warn", priority = -2 }
 nursery = { level = "warn", priority = -2 }
 cargo = { level = "warn", priority = -2 }
 pedantic = { level = "warn", priority = -1 } # Pedantic takes priority on the others
-
+multiple_crate_versions = "allow"
 print_stdout = "deny" # Its a lib and we should never print with println!

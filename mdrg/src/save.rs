@@ -68,15 +68,30 @@ pub struct MDRGSaveRecord {
 }
 
 impl MDRGSaveRecord {
+    /// A function that will give you the save data of this record.
+    ///
+    /// This function parses the internal `save_data` property into a json, and returns you that json
+    /// If this function is called more than once, cache will be used, so you can call this function as much as you like
+    ///
+    /// # Errors
+    ///
+    /// This will return [`serde_json::Error`] if the parsing wasn't successful
     pub fn save_data(&mut self) -> Result<&mut MDRGSaveSlot, serde_json::Error> {
         if self.parsed_data.is_none() {
             self.parsed_data = Some(serde_json::from_str(&self.save_data)?);
         }
 
         // SAFETY: The unwrap will never panic because we assign parsed_data just before the unwrap
-        Ok(self.parsed_data.as_mut().unwrap())
+        Ok(self.parsed_data.as_mut().unwrap_or_else(|| unreachable!()))
     }
 
+    /// A function that flushes data obtained from the [`Self::save_data`] function
+    /// into the underlying `save_data` property, so the save file possessing this record
+    /// will be ready to be saved
+    ///
+    /// # Errors
+    ///
+    /// This will return `serde_json::Error` if the jsonification wasn't successful
     pub fn flush_data(&mut self) -> Result<(), serde_json::Error> {
         // If its none, it was never assigned to, meaning it didn't even get edited
         let Some(data) = self.parsed_data.as_ref() else {

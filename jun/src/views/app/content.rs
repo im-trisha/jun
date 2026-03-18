@@ -3,7 +3,7 @@ use egui::{Frame, Key, Modifiers};
 use crate::JunApp;
 
 impl JunApp {
-    fn background(&self, ctx: &egui::Context) {
+    fn background(ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.with_layout(egui::Layout::left_to_right(egui::Align::BOTTOM), |ui| {
                 ui.set_opacity(0.6);
@@ -28,7 +28,7 @@ impl JunApp {
 
     pub(super) fn content(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         let central_panel = if self.state.freaky {
-            self.background(ctx);
+            Self::background(ctx);
             egui::CentralPanel::default().frame(Frame::new().inner_margin(8))
         } else {
             egui::CentralPanel::default()

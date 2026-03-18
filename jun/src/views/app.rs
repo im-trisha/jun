@@ -26,6 +26,10 @@ impl Default for Screens {
     }
 }
 
+pub trait ScreenView {
+    fn ui(&mut self, ui: &mut egui::Ui, state: &mut JunAppState);
+}
+
 impl Screens {
     pub fn title(&self, language: Language) -> String {
         let s = match self {
