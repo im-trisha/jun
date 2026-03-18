@@ -1,6 +1,7 @@
 [package]
 name = "jun"
 version = "0.1.0"
+publish = false
 authors = ["imtrisha <imtrisha@noreply.codeberg.org>"]
 edition = "2024"
 description = "A GUI save file editor for MDRG save files"
@@ -10,6 +11,8 @@ license = "MIT"
 keywords = ["mdrg", "save", "my dystopian robot girlfriend"]
 categories = []
 
+[lints]
+workspace = true
 
 [package.metadata.docs.rs]
 all-features = true

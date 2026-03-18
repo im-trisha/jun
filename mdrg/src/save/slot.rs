@@ -8,7 +8,7 @@ use crate::events::EventsState;
 use crate::items::ItemsState;
 use crate::news::NewsDataState;
 use crate::save::dialogue_chain::DialogueChainMemory;
-use crate::save::flag::Flag;
+use crate::save::flag::StoryFlags;
 use crate::substates::{
     BotStatusAppState, CockTwitchState, CocktractsState, CookingMinigameState, DeliveriesState,
     FishingMinigameState, JoinUsBlogState, StockMarketState,
@@ -160,7 +160,7 @@ pub struct MDRGSaveSlot {
     // Story flags
     /// All story and progression flags set so far
     #[serde(default)]
-    pub story_flags: Vec<Flag>,
+    pub story_flags: Vec<StoryFlags>,
 
     // Economy / reputation
     /// Search score, which is between 0.0 and 1.0

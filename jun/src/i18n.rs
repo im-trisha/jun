@@ -12,7 +12,7 @@ pub enum Language {
 }
 
 impl Language {
-    pub const VALUES: &[Self] = &[Self::It, Self::En];
+    pub const VALUES: &'static [Self] = &[Self::It, Self::En];
 
     pub fn from_locale(locale: &str) -> Option<Self> {
         match locale.split('-').next().unwrap_or("") {

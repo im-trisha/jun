@@ -1,6 +1,7 @@
 use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
 
+pub use flag::StoryFlags;
 pub use slot::MDRGSaveSlot;
 
 mod dialogue_chain;

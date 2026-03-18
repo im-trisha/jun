@@ -2,12 +2,16 @@
 name = "mdrg"
 version = "0.1.0"
 edition = "2024"
+publish = true
 description = "A library defining the MDRG save file format structure"
 repository = "https://github.com/im-trisha/jun"
 readme = "README.md"
 license = "MIT"
 keywords = ["mdrg", "save", "my dystopian robot girlfriend"]
 categories = ["encoding"]
+
+[lints]
+workspace = true
 
 [dependencies]
 serde.workspace = true

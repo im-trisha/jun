@@ -121,10 +121,7 @@ impl SaveSlotPicker {
 
                 ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
                     ui.horizontal(|ui| {
-                        let button = ui.add(
-                            Button::new(lang.t_screens_save_slot_picker_select())
-                                .fill(Color32::from_rgb(60, 60, 90)),
-                        );
+                        let button = ui.add(Button::new(lang.t_screens_save_slot_picker_select()));
 
                         if Self::with_triangle(ui, button).clicked() {
                             action_taken = Some(SlotAction::Select)

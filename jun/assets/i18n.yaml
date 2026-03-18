@@ -500,3 +500,11 @@ mdrgp:
   times_went_to_church:
     en: "Times you went to church"
     it: "Volte in cui sei andato in chiesa"
+
+  heading_story_flags:
+    en: "Story flags"
+    it: "Indicatori storia"
+
+  story_flags_times_set:
+    en: "Times the flag has been set"
+    it: "Volte in cui è stato impostato"
