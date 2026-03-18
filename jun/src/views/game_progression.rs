@@ -76,6 +76,7 @@ impl GameProgression {
                             }
                         }
 
+                        let flag_idx = data.story_flags.iter().position(|e| &e.name == flag);
                         let Some(flag) = flag_idx.map(|e| data.story_flags.index_mut(e)) else {
                             return;
                         };
