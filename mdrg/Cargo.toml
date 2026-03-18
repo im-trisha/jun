@@ -2,7 +2,6 @@
 name = "mdrg"
 version = "0.90.0"
 edition = "2024"
-publish = true
 description = "A library defining the MDRG save file format structure"
 repository = "https://github.com/im-trisha/jun"
 readme = "README.md"
