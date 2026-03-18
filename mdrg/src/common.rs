@@ -75,8 +75,10 @@ pub struct Color32 {
 #[derive(Serialize, Deserialize)]
 pub struct KvInt {
     /// Variable name
+    #[serde(rename = "K")]
     pub key: String,
     /// Integer value
+    #[serde(rename = "V")]
     pub value: i32,
 }
 
@@ -86,8 +88,10 @@ pub struct KvInt {
 #[derive(Serialize, Deserialize)]
 pub struct KvFloat {
     /// Variable name
+    #[serde(rename = "K")]
     pub key: String,
     /// Float value
+    #[serde(rename = "V")]
     pub value: f32,
 }
 
