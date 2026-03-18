@@ -506,5 +506,5 @@ mdrgp:
     it: "Indicatori storia"
 
   story_flags_times_set:
-    en: "Times the flag has been set"
+    en: "Times this flag has been set"
     it: "Volte in cui è stato impostato"

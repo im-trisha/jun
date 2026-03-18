@@ -86,8 +86,7 @@ impl GameProgression {
                                 .speed(0.1)
                                 .range(1..=i32::MAX),
                         );
-                        stat_column!(ui, lang.t_mdrgp_nun_points(), &mut flag.times, 0..=i32::MAX);
-                        ui.add_space(8.0);
+                        ui.add_space(4.0);
                     });
                 }
             });
