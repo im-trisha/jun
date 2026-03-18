@@ -1,4 +1,4 @@
-use egui::{Key, Modifiers};
+use egui::{Frame, Key, Modifiers};
 
 use crate::JunApp;
 
@@ -6,6 +6,7 @@ impl JunApp {
     fn background(&self, ctx: &egui::Context) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.with_layout(egui::Layout::left_to_right(egui::Align::BOTTOM), |ui| {
+                ui.set_opacity(0.6);
                 ui.add(
                     egui::Image::new(egui::include_image!(
                         "../../../assets/characters/Annalie.png"
@@ -26,25 +27,27 @@ impl JunApp {
     }
 
     pub(super) fn content(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        self.background(ctx);
+        let central_panel = if self.state.freaky {
+            self.background(ctx);
+            egui::CentralPanel::default().frame(Frame::new().inner_margin(8))
+        } else {
+            egui::CentralPanel::default()
+        };
 
-        let content_frame = egui::containers::Frame::default();
-        egui::CentralPanel::default()
-            .frame(content_frame)
-            .show(ctx, |ui| {
-                if ui.input_mut(|i| i.consume_key(Modifiers::CTRL | Modifiers::SHIFT, Key::S))
-                    && let Some(path) = self.mdrg_file_dialog().save_file()
-                {
-                    self.export_save(path);
-                }
+        central_panel.show(ctx, |ui| {
+            if ui.input_mut(|i| i.consume_key(Modifiers::CTRL | Modifiers::SHIFT, Key::S))
+                && let Some(path) = self.mdrg_file_dialog().save_file()
+            {
+                self.export_save(path);
+            }
 
-                if ui.input_mut(|i| i.consume_key(Modifiers::CTRL, Key::S))
-                    && let Some(path) = self.state.recent_paths.last()
-                {
-                    self.export_save(path.clone());
-                }
+            if ui.input_mut(|i| i.consume_key(Modifiers::CTRL, Key::S))
+                && let Some(path) = self.state.recent_paths.last()
+            {
+                self.export_save(path.clone());
+            }
 
-                self.current_screen.show(ui, &mut self.state)
-            });
+            self.current_screen.show(ui, &mut self.state)
+        });
     }
 }

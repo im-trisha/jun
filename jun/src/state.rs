@@ -13,11 +13,14 @@ pub struct WorkingSaveSlot {
 #[derive(Deserialize, Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
 pub struct JunAppState {
+    /// The selected language
     pub language: Language,
     /// A list of files we precedently worked with
     pub recent_paths: Vec<PathBuf>,
     /// If the user is a poweruser and wants to see settings that possibly break the save file
     pub godmode: bool,
+    /// Show/don't show Annalie and Shanice in the background
+    pub freaky: bool,
     /// Already internationalized error string
     #[serde(skip)]
     pub errors: Vec<String>,
@@ -43,6 +46,7 @@ impl Default for JunAppState {
             language,
             godmode: false,
             show_about: false,
+            freaky: true,
             recent_paths: Default::default(),
             errors: Default::default(),
             working_file: Default::default(),

@@ -112,6 +112,9 @@ topbar:
     godmode:
       en: "Godmode"
       it: "Godmode"
+    freaky:
+      en: "Show Annalie and Shanice"
+      it: "Mostra Annalie e Shanice"
 
   about:
     label:
@@ -442,8 +445,58 @@ mdrgp:
       it: "L'ultima volta (in minuti di gioco) che hai parlato con Jun"
   last_bot_started_talk_at:
     title:
-      en: "Last bot talk"
+      en: "Last Jun talk"
       it: "Ultima conversazione di Jun"
     desc:
       en: "The last time (In game minutes) when Jun started a talk with you"
       it: "L'ultima volta (in minuti di gioco) che Jun ha iniziato una conversazione con te"
+  heading_jun_and_apt:
+    en: "Jun and the apartment"
+    it: "Jun e l'appartamento"
+  unique_conversations_left:
+    title:
+      en: "Unique conversations left"
+      it: "Conversazioni uniche rimanenti"
+    desc:
+      en: "This is used to not allow the player to spam all the dialogues with Jun at once.\nWhen it gets to 0, only generic dialogues appear when talking with her."
+      it: "Viene usato per impedire al giocatore di sprecare tutti i dialoghi di Jun insieme.\nQuando arriva a 0, appariranno solo dialoghi generici quando parli con lei."
+  weekly_rent:
+    en: "Weekly rent"
+    it: "Affitto settimanale"
+  room_light:
+    title:
+      en: "Room light on"
+      it: "Luce della stanza accesa"
+    desc:
+      en: "Is the room light on?"
+      it: "La luce della stanza è accesa?"
+  search_suspects:
+    title:
+      en: "Jun suspect"
+      it: "Jun sospetta"
+    desc:
+      en: "This score is related to peoples noticing Jun is a bot.\n0.0 means no one noticed yet, 1.0 means it's bad"
+      it: "Questa statistica è legata alle persone che notano che Jun è un bot.\n0.0 significa che nessuno se n'è accorto per ora, 1.0 significa guai"
+  relationship_stage:
+    title:
+      en: "Relationship stage"
+      it: "Stadio relazione"
+    desc:
+      en: "The stage of your relationship with Jun"
+      it: "Lo stadio della tua relazione con Jun"
+  heading_church:
+    en: "Church storyline"
+    it: "Storia chiesa"
+  heading_church_subtitle:
+    en: "Editing any of this could lead to potential church story corruption!"
+    it: "Modificare queste proprietà potrebbe corrompere la storia della chiesa!"
+
+  priestbot_points:
+    en: "PriestBot points"
+    it: "Punti con PriestBot"
+  nun_points:
+    en: "Shanice points"
+    it: "Punti con Shanice"
+  times_went_to_church:
+    en: "Times you went to church"
+    it: "Volte in cui sei andato in chiesa"

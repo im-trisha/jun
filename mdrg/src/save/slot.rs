@@ -296,11 +296,11 @@ pub struct MDRGSaveSlot {
     pub stage: i32,
     /// Citing the lead developer (ΩSheep):
     ///
-    ///  This is used to not allow the player to spam all the dialogues with jun at once.
+    /// > This is used to not allow the player to spam all the dialogues with jun at once.
     ///
-    /// When unique_conversations_left is 0 only generic dialogues appear when talking with her.
+    /// > When unique_conversations_left is 0 only generic dialogues appear when talking with her.
     ///
-    /// It goes down when a unique conversation activates
+    /// > It goes down when a unique conversation activates
     #[serde(rename = "_uniqueConversationsLeft", default)]
     pub unique_conversations_left: i32,
 

@@ -90,7 +90,7 @@ macro_rules! heading_column {
         $ui.vertical(|ui| {
             ui.add_space(32.);
             ui.label(RichText::new($title).size(32.));
-            ui.add_space(32.);
+            ui.add_space(16.);
         });
     };
 }

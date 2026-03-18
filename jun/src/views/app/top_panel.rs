@@ -50,6 +50,7 @@ impl JunApp {
 
             let lang = self.state.language;
             ui.checkbox(&mut self.state.godmode, lang.t_topbar_settings_godmode());
+            ui.checkbox(&mut self.state.freaky, lang.t_topbar_settings_freaky());
         });
     }
 
