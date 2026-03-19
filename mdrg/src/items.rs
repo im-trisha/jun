@@ -1,10 +1,7 @@
 //! Items related types
 
-use std::collections::HashMap;
-
 use num_enum::{FromPrimitive, IntoPrimitive};
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 
 mod item;
 mod item_condition;
@@ -14,7 +11,10 @@ pub use item::Item;
 pub use item_condition::ItemCondition;
 pub use item_requests::{ItemOrder, ItemOrderStatus, ItemRepairOrder};
 
-use crate::{common::KeyedValues, mods::ModInfo};
+use crate::{
+    common::{GameId, KeyedValues},
+    mods::ModInfo,
+};
 
 // Opaque sub-types (fields not exposed by IL2CPP dump)
 /// An in-game shop. Field layout not exposed by the dump; all JSON fields are
@@ -25,9 +25,23 @@ use crate::{common::KeyedValues, mods::ModInfo};
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct Shop {
-    /// All serialized fields
-    #[serde(flatten)]
-    pub fields: HashMap<String, Value>,
+    /// Money spent in this shop
+    #[serde(rename = "<MoneySpent>k__BackingField")]
+    pub money_spent: i32,
+    /// The number of items bought in this shop
+    #[serde(rename = "<ItemsBought>k__BackingField")]
+    pub items_bought: i32,
+    /// The items in this shop
+    #[serde(rename = "_shopItems")]
+    pub shop_items: Vec<ShopItem>,
+    /// The rng data of the shop
+    // TODO: what rng? next items?
+    #[serde(rename = "_rngCompensationData")]
+    pub rng_compensation_data: KeyedValues<GameId, i32>,
+    /// The id of this shop
+    // TODO: Outdated?
+    #[serde(rename = "<Id>k__BackingField")]
+    pub id: String,
 }
 
 /// A saved equipment preset (Panties, Bra, Dress...)

@@ -1,6 +1,6 @@
 [package]
 name = "jun"
-version = "1.0.4" # Mostly pride versioning
+version = "1.0.5" # Mostly pride versioning
 authors = ["imtrisha <imtrisha@noreply.codeberg.org>"]
 edition = "2024"
 description = "A GUI save file editor for MDRG save files"

@@ -21,7 +21,7 @@ use serde::{Deserialize, Serialize};
 /// The C# type is not present in the dump, I'm guessing it has been inlined,
 /// it was easy to derive from the save files though
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct GameId {
     /// GUID, if non-empty, the item is a modded item from the mod having that GUID
     #[serde(rename = "_guid")]
@@ -33,7 +33,7 @@ pub struct GameId {
 
 /// 128-bit GUID stored as a hex string
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub struct SerializableGuid {
     /// String representation of the 16-byte GUID
     #[serde(rename = "serializedGuid")]
