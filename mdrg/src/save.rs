@@ -36,6 +36,7 @@ pub struct MDRGSaveFile {
     /// The websites visited all across the save slots
     #[serde(rename = "visitedWebsites", default)]
     pub visited_websites: Vec<String>,
+    #[serde(default)]
     /// The steam achievements done, now unused because the game is banned on steam
     pub achievements: serde_json::Value,
     /// Global flags

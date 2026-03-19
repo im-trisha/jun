@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Serialize};
 
+use crate::events::EventHolder;
+
 /// Legacy email format, its not serialized by the game anymore,
 /// kept probably for backwards compatibility
 ///
@@ -37,6 +39,9 @@ pub struct NewEmail {
     /// In-game minute at which the email becomes visible
     #[serde(rename = "visibleAt")]
     pub visible_at: i32,
+    /// Obsolete for holding event related data
+    #[serde(rename = "onReadEventHolder")]
+    pub event_holder: EventHolder,
     /// Identifier of the email prefab (game asset)
     #[serde(rename = "emailId")]
     pub email_id: String,

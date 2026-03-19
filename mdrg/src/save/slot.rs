@@ -158,7 +158,7 @@ pub struct MDRGSaveSlot {
 
     // Story flags
     /// All story and progression flags set so far
-    #[serde(default)]
+    #[serde(rename = "flags", default)]
     pub story_flags: Vec<StoryFlags>,
 
     // Economy / reputation

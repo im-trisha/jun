@@ -16,7 +16,7 @@ mdrg = { version = "0.90.0", path = "./mdrg" }
 log = "0.4.29"
 
 # Used to parse the json file into a serde structure
-serde_json = "1.0.149"
+serde_json = { version = "1.0.149", features = ["float_roundtrip"] }
 
 # i18n
 typed-i18n = "0.6.2"

@@ -106,7 +106,9 @@ pub struct Item {
     /// Obsolete additional data blob
     #[serde(rename = "_additionalData", default)]
     pub additional_data: String,
-    //TODO: AdditionalDataSlots is there and obsolete too, put it?
+    /// Obsolete additional data Vec
+    #[serde(rename = "AdditionalDataSlots", default)]
+    pub additional_data_slot: Vec<serde_json::Value>,
     /// Unique instance GUID for this specific item
     #[serde(rename = "UniqueItemGuid")]
     pub unique_item_guid: SerializableGuid,
@@ -136,7 +138,7 @@ pub struct Item {
 }
 
 impl Item {
-    #[must_use] 
+    #[must_use]
     pub fn item_condition(&self) -> ItemCondition {
         ItemCondition::from(self.quality)
     }
@@ -158,7 +160,7 @@ impl Item {
     ///
     /// You should treat this value as a normal value though,
     /// because this function does the job for you and is a transpilation of the C# code
-    #[must_use] 
+    #[must_use]
     pub const fn get_count(&self) -> i32 {
         self.count + 1
     }
