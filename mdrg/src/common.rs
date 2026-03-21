@@ -41,7 +41,7 @@ pub struct SerializableGuid {
 }
 
 /// RGBA color matching `UnityEngine.Color` (each component is between 0.0 and 1.0)
-#[cfg_attr(feature = "derive-clone", derive(Clone))]
+#[cfg_attr(feature = "derive-clone", derive(Clone, Copy))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
 pub struct Color {
@@ -57,7 +57,8 @@ pub struct Color {
 
 /// RGBA color matching `UnityEngine.Color32` (each component is between 0 and 255)
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Clone, Copy, Serialize, Deserialize)]
+#[cfg_attr(feature = "derive-clone", derive(Clone, Copy))]
+#[derive(Serialize, Deserialize, Default)]
 pub struct Color32 {
     /// Red channel
     pub r: u8,

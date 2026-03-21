@@ -38,6 +38,8 @@ pub struct MdrgK;
 impl MdrgK {
     pub const MAX_MONEY: i32 = 2_000_000_000;
     pub const MAX_OWNED_STOCK_COUNT_SINGLE: i32 = 25000;
+    pub const MAX_CUM_SAFE_AMOUNT: i32 = 700;
+    pub const MAX_CUM_ALIVE_AMOUNT: i32 = 1000;
 
     pub const SAVES_PER_FOLDER: i32 = 7;
     pub const FOLDER_COUNT: i32 = 15;

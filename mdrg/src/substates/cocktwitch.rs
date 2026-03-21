@@ -62,7 +62,7 @@ pub struct Streamer {
 /// The C# type is `CockTwitchManager` (`TypeDefIndex`: 1515)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct CockTwitchState {
     /// All registered streamers on the platform
     #[serde(rename = "_streamers", default)]

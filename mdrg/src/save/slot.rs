@@ -1,5 +1,7 @@
 //! Root save-slot type
 
+use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
 
 use crate::common::{Color, KeyedValues, SpecialVariablesHolder};
@@ -14,6 +16,10 @@ use crate::substates::{
     FishingMinigameState, JoinUsBlogState, StockMarketState,
 };
 
+const fn default_one() -> f32 {
+    1.0
+}
+
 // TODO: not default on some fields important lorewise/game logic?
 
 /// The root save-file object
@@ -22,6 +28,8 @@ use crate::substates::{
 ///
 /// Fields marked `[Obsolete]` in C# are preserved here for round-trip
 /// compatibility with older saves (Hopefully, don't put any faith in this, I didn't verify)
+///
+/// Also, we try to have reasonable defaults through the structs
 #[cfg_attr(feature = "derive-debug", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[derive(Serialize, Deserialize)]
@@ -43,38 +51,38 @@ pub struct MDRGSaveSlot {
 
     // General game state
     /// Stock-market state
-    #[serde(rename = "stockManager")]
+    #[serde(rename = "stockManager", default)]
     pub stock_market: StockMarketState,
     /// State for anything item-related
-    #[serde(rename = "itemManager")]
+    #[serde(rename = "itemManager", default)]
     pub items: ItemsState,
     /// Ongoing game events
-    #[serde(rename = "eventManager")]
+    #[serde(rename = "eventManager", default)]
     pub events: EventsState,
     /// Streaming state
-    #[serde(rename = "cockTwitchManager")]
+    #[serde(rename = "cockTwitchManager", default)]
     pub cock_twitch: CockTwitchState,
     /// Cocktracts state
-    #[serde(rename = "cocktractManager")]
+    #[serde(rename = "cocktractManager", default)]
     pub cocktracts: CocktractsState,
     /// Fedup deliveries state
-    #[serde(rename = "deliveryManager")]
+    #[serde(rename = "deliveryManager", default)]
     pub deliveries: DeliveriesState,
     /// Cooking minigame state
     #[serde(rename = "cookingMinigameManager")]
     pub cooking_minigame: CookingMinigameState,
     /// Fishing minigame state
-    #[serde(rename = "fishingMinigameManager")]
+    #[serde(rename = "fishingMinigameManager", default)]
     pub fishing_minigame: FishingMinigameState,
     /// Bot console state
-    #[serde(rename = "botStatusAppManager")]
+    #[serde(rename = "botStatusAppManager", default)]
     pub bot_console: BotStatusAppState,
     /// `JoinUs` blog state
     #[serde(rename = "joinUsBlogManager")]
     pub join_us_blog: JoinUsBlogState,
     /// Arbitrary custom key-value variables for modding, may be used by the main game too,
     /// check out the documentation of [`SpecialVariablesHolder`] for more information
-    #[serde(rename = "customData")]
+    #[serde(rename = "customData", default)]
     pub custom_data: SpecialVariablesHolder,
 
     // Stream and church stats
@@ -101,6 +109,9 @@ pub struct MDRGSaveSlot {
     /// How many times the player ejaculated in Jun's anus
     #[serde(rename = "timesCameInsideAnal", default)]
     pub times_came_inside_anal: i32,
+    /// How many times the player ejaculated while performing a "Thighjob" with Jun
+    #[serde(rename = "timesCameTighjob", default)]
+    pub times_came_thighjob: i32,
     /// How many times the player ejaculated anywhere outside of Jun's orifices
     #[serde(rename = "timesCameOutside", default)]
     pub times_came_outside: i32,
@@ -110,7 +121,20 @@ pub struct MDRGSaveSlot {
     /// Volume (mL) ejaculated in Jun's oral cavity
     #[serde(rename = "mlCameInMouth", default)]
     pub ml_came_in_mouth: f32,
+    /// Volume (mL) ejaculated in Jun's vagina
+    #[serde(rename = "mlCameInVagina", default)]
+    pub ml_came_in_vagina: f32,
+    /// Volume (mL) ejaculated in Jun's anus
+    #[serde(rename = "mlCameInAss", default)]
+    pub ml_came_in_ass: f32,
+    /// Volume (mL) ejaculated during a "Thighjob"
+    #[serde(rename = "mlCameFromThighjob", default)]
+    pub ml_came_from_thighjob: f32,
     /// Volume (mL) ejaculated anywhere outside of Jun's orifices
+    #[serde(rename = "mlOfCumOutside", default)]
+    pub ml_of_cum_outside: f32,
+    /// Volume (mL) ejaculated anywhere outside of Jun's orifices
+    // TODO: wasted is not outside..?
     #[serde(rename = "mlOfCumWasted", default)]
     pub ml_of_cum_wasted: f32,
 
@@ -144,6 +168,9 @@ pub struct MDRGSaveSlot {
     /// Whether the bedroom light is currently on
     #[serde(rename = "lightSwitchOn", default)]
     pub light_switch_on: bool,
+    /// Whether the bathroom light is currently on
+    #[serde(rename = "bathroomLightOn", default)]
+    pub bathroom_light_on: bool,
 
     // News / dialogue chain data
     /// Current in-game news articles
@@ -180,6 +207,7 @@ pub struct MDRGSaveSlot {
 
     // Player economy
     /// Player's current balance
+    #[serde(default)]
     pub money: i32,
     /// Casino token balance
     #[serde(rename = "casinoTokens", default)]
@@ -187,18 +215,18 @@ pub struct MDRGSaveSlot {
 
     // Player body stats
     /// Maximum volume (mL) of sperm Anon can store inside his testicles
-    #[serde(rename = "_maxCum")]
+    #[serde(rename = "_maxCum", default)]
     pub max_cum: f32,
     /// Remaining volume (mL) of sperm Anon has inside his testicles
     ///
     /// [`MDRGSaveSlot.max_cum`] - [`MDRGSaveSlot.remaining_cum`] will give you the missing sperm (in mL)
-    #[serde(rename = "_remainingCum")]
+    #[serde(rename = "_remainingCum", default)]
     pub remaining_cum: f32,
     /// Current stamina level, between 0.0 and 1.0 (1.0 means its full)
-    #[serde(rename = "_stamina")]
+    #[serde(rename = "_stamina", default = "default_one")]
     pub stamina: f32,
     /// Current mental health level, between 0.0 and 1.0 (1.0 means its full)
-    #[serde(rename = "_mentalHealth")]
+    #[serde(rename = "_mentalHealth", default = "default_one")]
     pub mental_health: f32,
     /// Temporary mental health modifier
     ///
@@ -221,16 +249,16 @@ pub struct MDRGSaveSlot {
     ///     }
     /// }
     /// ```
-    #[serde(rename = "_mentalHealthTemporary")]
+    #[serde(rename = "_mentalHealthTemporary", default)]
     pub mental_health_temporary: f32,
     /// Current satiation level, between 0.0 and 1.0 (1.0 means you're full)
-    #[serde(rename = "_satiation")]
+    #[serde(rename = "_satiation", default = "default_one")]
     pub satiation: f32,
     /// Current health level, between 0.0 and 1.0 (1.0 means its full)
     ///
     /// This is used to handle starvation (when you are starving, it goes down and when you reach 0 you die)
     /// It also goes down with some drugs
-    #[serde(rename = "_health")]
+    #[serde(rename = "_health", default = "default_one")]
     pub health: f32,
 
     // Item effect timers
@@ -243,17 +271,17 @@ pub struct MDRGSaveSlot {
 
     // Jun's stats
     /// Jun's lust level
-    #[serde(rename = "_lust")]
+    #[serde(rename = "_lust", default)]
     pub lust: i32,
     /// Jun longing / attachment level, between 0.0 and 10.0
     ///
     /// Citing the lead developer (ΩSheep):
     /// >  longing is for accumulated horniness. it goes from 0 to 10.
     /// > It gets converted to horniness when you activate a sex scene. Goes down when she cums.
-    #[serde(rename = "_longing")]
+    #[serde(rename = "_longing", default)]
     pub longing: f32,
     /// Jun's current arousal level, between 0.0 and 1.0 (1.0 means maximum intensity)
-    #[serde(rename = "_currentHorniness")]
+    #[serde(rename = "_currentHorniness", default)]
     pub current_horniness: f32,
     /// Jun sympathy level
     // TODO: Range, edit gui too
@@ -267,13 +295,13 @@ pub struct MDRGSaveSlot {
     #[serde(rename = "inteligence")]
     pub intelligence: i32,
     /// Volume of sperm in Jun's vagina (mL)
-    #[serde(rename = "_cumInside")]
+    #[serde(rename = "_cumInside", default)]
     pub cum_inside: f32,
     /// Volume of sperm in Jun's anus (mL)
-    #[serde(rename = "_cumInsideAnal")]
+    #[serde(rename = "_cumInsideAnal", default)]
     pub cum_inside_anal: f32,
     /// Volume of sperm in Jun's stomach (mL)
-    #[serde(rename = "_cumInsideStomach")]
+    #[serde(rename = "_cumInsideStomach", default)]
     pub cum_inside_stomach: f32,
 
     // Names / progression
@@ -330,6 +358,9 @@ pub struct MDRGSaveSlot {
     /// In-game minutes of the last sexual activity
     #[serde(rename = "lastFuckedAt", default)]
     pub last_fucked_at: i32,
+    /// In-game minutes of the last time Jun came
+    #[serde(rename = "lastBotCameAt", default)]
+    pub last_bot_came_at: i32,
     /// In-game minutes of the last interaction with Jun
     #[serde(rename = "lastInteractAt", default)]
     pub last_interact_at: i32,
@@ -352,6 +383,12 @@ pub struct MDRGSaveSlot {
     /// In-game minute of the last headpat, the game serializes this field as "lastHeadpatedAt"
     #[serde(rename = "lastHeadpatedAt", default)]
     pub last_headpatted_at: i32,
+    /// In-game minute of the last shower Anon had
+    #[serde(rename = "lastAnonsShowerAt", default)]
+    pub last_anons_shower_at: i32,
+    /// In-game minute of the last shower Jun had, the game serializes this field as "leastBotCleanAt"
+    #[serde(rename = "leastBotCleanAt", default)]
+    pub least_bot_clean_at: i32,
     /// In-game minute of the last hunger notification
     #[serde(rename = "lastHungerInfoAt", default)]
     pub last_hunger_info_at: i32,
@@ -366,4 +403,8 @@ pub struct MDRGSaveSlot {
     /// Current follower count on `CockTwitch`
     #[serde(default)]
     pub followers: i32,
+    /// Extra attributes unknown by this crate
+    /// Please, if this contains any value, signal it to the developer of this crate!
+    #[serde(flatten)]
+    pub extra: HashMap<String, serde_json::Value>,
 }

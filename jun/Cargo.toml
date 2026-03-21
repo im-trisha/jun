@@ -8,7 +8,7 @@ repository = "https://github.com/im-trisha/jun"
 readme = "README.md"
 license = "MIT"
 keywords = ["mdrg", "save", "my dystopian robot girlfriend"]
-categories = []
+categories = ["game-development", "gui", "development-tools"]
 
 [lints]
 workspace = true

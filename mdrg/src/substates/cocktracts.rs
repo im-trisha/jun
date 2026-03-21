@@ -107,7 +107,7 @@ pub struct CocktractPartner {
 /// The C# type is `CocktractManager` (`TypeDefIndex`: 1205)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct CocktractsState {
     /// Contracts currently available for the player to accept
     #[serde(rename = "AvailableContracts", default)]

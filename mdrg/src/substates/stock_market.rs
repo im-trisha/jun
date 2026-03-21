@@ -30,7 +30,7 @@ pub struct StockCompany {
 /// The C# type is `StockManager` (`TypeDefIndex`: 1502)
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default)]
 pub struct StockMarketState {
     /// All listed stock companies
     #[serde(rename = "<StockCompanies>k__BackingField", default)]
